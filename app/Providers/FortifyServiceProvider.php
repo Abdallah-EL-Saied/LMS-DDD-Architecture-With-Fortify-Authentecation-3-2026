@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\ResetUserPassword;
+use App\Interfaces\FortifyBridges\CreateNewUser;
+use App\Interfaces\FortifyBridges\ResetUserPassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -45,13 +45,13 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function configureViews(): void
     {
-        Fortify::loginView(fn () => view('pages::auth.login'));
-        Fortify::verifyEmailView(fn () => view('pages::auth.verify-email'));
-        Fortify::twoFactorChallengeView(fn () => view('pages::auth.two-factor-challenge'));
-        Fortify::confirmPasswordView(fn () => view('pages::auth.confirm-password'));
-        Fortify::registerView(fn () => view('pages::auth.register'));
-        Fortify::resetPasswordView(fn () => view('pages::auth.reset-password'));
-        Fortify::requestPasswordResetLinkView(fn () => view('pages::auth.forgot-password'));
+        Fortify::loginView(fn() => view('pages::auth.login'));
+        Fortify::verifyEmailView(fn() => view('pages::auth.verify-email'));
+        Fortify::twoFactorChallengeView(fn() => view('pages::auth.two-factor-challenge'));
+        Fortify::confirmPasswordView(fn() => view('pages::auth.confirm-password'));
+        Fortify::registerView(fn() => view('pages::auth.register'));
+        Fortify::resetPasswordView(fn() => view('pages::auth.reset-password'));
+        Fortify::requestPasswordResetLinkView(fn() => view('pages::auth.forgot-password'));
     }
 
     /**
@@ -64,9 +64,24 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = \App\Infrastructure\Persistence\Eloquent\Models\User::where('email', $request->email)->first();
+
+            if ($user && \Illuminate\Support\Facades\Hash::check($request->password, $user->password)) {
+                // Block login if password is the default 'password'
+                if ($request->password === 'password') {
+                    return null;
+                }
+
+                return $user;
+            }
+
+            return null;
         });
     }
 }

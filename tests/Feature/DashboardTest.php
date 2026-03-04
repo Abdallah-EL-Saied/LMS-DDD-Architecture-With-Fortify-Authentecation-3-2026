@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Infrastructure\Persistence\Eloquent\Models\User;
 
 test('guests are redirected to the login page', function () {
     $response = $this->get(route('dashboard'));

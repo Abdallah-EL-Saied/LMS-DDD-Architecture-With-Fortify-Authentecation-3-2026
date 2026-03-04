@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Concerns;
+namespace App\Concerns\Traits;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -14,7 +14,15 @@ trait PasswordValidationRules
      */
     protected function passwordRules(): array
     {
-        return ['required', 'string', Password::default(), 'confirmed'];
+        return [
+            'required',
+            'string',
+            Password::min(8)
+                ->letters()
+                ->mixedCase()
+                ->numbers(),
+            'confirmed',
+        ];
     }
 
     /**
