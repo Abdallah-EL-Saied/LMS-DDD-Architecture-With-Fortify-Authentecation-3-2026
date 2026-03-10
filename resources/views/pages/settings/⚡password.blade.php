@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
 
 new #[Title('Password settings')] class extends Component {
     use PasswordValidationRules;
@@ -58,7 +59,7 @@ new #[Title('Password settings')] class extends Component {
      */
     protected function validateTwoFactorCode(string $code): bool
     {
-        return app(\Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider::class)
+        return app(TwoFactorAuthenticationProvider::class)
             ->verify(decrypt(Auth::user()->two_factor_secret), $code);
     }
 }; ?>
@@ -90,8 +91,7 @@ new #[Title('Password settings')] class extends Component {
                 autocomplete="new-password" viewable />
 
             @if (Auth::user()->two_factor_secret)
-                <flux:input wire:model="two_factor_code" :label="__('Two-factor code')" type="text" inputmode="numeric"
-                    required :placeholder="__('Enter your 2FA code')" />
+                <flux:otp wire:model="two_factor_code" length="6" :label="__('Two-factor code')" />
             @endif
 
             <div class="flex items-center gap-4">

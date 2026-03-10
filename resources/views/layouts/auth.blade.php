@@ -1,3 +1,9 @@
-<x-layouts::auth.simple :title="$title ?? null">
-    {{ $slot }}
-</x-layouts::auth.simple>
+<x-layouts::auth.split :title="$title ?? null">
+    @if (isset($cover))
+        <x-slot:cover>
+            {{ $cover }}
+            </x-slot>
+    @endif
+
+        {{ $slot }}
+</x-layouts::auth.split>

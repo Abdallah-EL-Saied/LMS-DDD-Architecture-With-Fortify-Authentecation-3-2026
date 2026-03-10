@@ -1,6 +1,11 @@
 <x-layouts::auth :title="__('Log in')">
+    <!-- <x-slot:cover>
+        <img src="/assets/auth.webp" class="absolute inset-0 object-cover w-full h-full opacity-60">
+        <div class="absolute inset-0 bg-linear-to-t from-neutral-950/80 to-transparent"></div>
+        </x-slot> -->
+
     <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
+        <x-auth-header :title="__('Welcome Back!')" :description="__('Log in to your account')" />
 
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />

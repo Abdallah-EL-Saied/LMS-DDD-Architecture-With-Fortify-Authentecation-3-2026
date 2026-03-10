@@ -3,7 +3,8 @@
 use App\Interfaces\Http\Controllers\Auth\SocialController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome')->name('home');
+Route::livewire('/', 'pages::home.index')->name('home');
+Route::livewire('/courses', 'pages::home.courses')->name('courses');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
