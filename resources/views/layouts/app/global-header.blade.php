@@ -7,45 +7,137 @@
     <style>
         /* Custom Active Navbar Item Styles */
         .custom-nav-item {
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.8) !important;
-            transition: all 0.2s ease-in-out;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85) !important;
+            transition: all 0.3s ease;
         }
 
         .custom-nav-item:hover {
-            color: white !important;
-            background-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        .custom-nav-item[data-current]::after {
-            display: none !important;
+            color: var(--color-secondary) !important;
+            background-color: rgba(255, 255, 255, 0.08) !important;
         }
 
         .custom-nav-item[data-current] {
-            color: var(--color-tertiary-300) !important;
-            background-color: rgba(255, 255, 255, 0.12) !important;
-            border-radius: 0.5rem;
+            color: var(--color-secondary) !important;
+            background-color: rgba(244, 192, 37, 0.1) !important;
+            font-weight: 700;
         }
 
-        .dark .custom-nav-item[data-current] {
-            color: var(--color-tertiary-300) !important;
-            background-color: rgba(197, 160, 89, 0.1) !important;
+        /* Search Icon Consistency */
+        .header-icon {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
         }
 
-        .custom-nav-item div {
-            font-size: 1rem;
-            font-weight: 600;
+        .header-icon:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Dropdown & Profile Menu Unified Branded Styling */
+        [data-flux-navmenu],
+        [data-flux-menu] {
+            background-color: #1a4441 !important;
+            /* Branded dark teal */
+            border: 1px solid rgba(244, 192, 37, 0.2) !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        [data-flux-navmenu-item],
+        [data-flux-menu-item],
+        [data-flux-menu] flux-heading,
+        [data-flux-menu] flux-text {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        [data-flux-navmenu-item]:hover,
+        [data-flux-menu-item]:hover {
+            background-color: rgba(244, 192, 37, 0.1) !important;
+            color: var(--color-secondary) !important;
+        }
+
+        /* Sidebar Branded Styling */
+        [data-flux-sidebar] {
+            background-color: #1a4441 !important;
+            /* Branded dark teal */
+            border-right: 1px solid rgba(244, 192, 37, 0.1) !important;
+            z-index: 1000 !important;
+            top: 0 !important;
+        }
+
+        [data-flux-sidebar] [data-flux-sidebar-item] {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        [data-flux-sidebar] [data-flux-sidebar-item][data-current] {
+            color: var(--color-secondary) !important;
+            background-color: rgba(244, 192, 37, 0.1) !important;
+        }
+
+        [data-flux-sidebar] [data-flux-sidebar-item]:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            color: white !important;
+        }
+
+        [data-flux-sidebar-group] flux-sidebar-heading {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        /* Profile Toggle Consistency */
+        [data-flux-sidebar-profile] {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        [data-flux-sidebar-profile] flux-icon {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        [data-flux-sidebar-profile]:hover {
+            background-color: rgba(255, 255, 255, 0.08) !important;
         }
     </style>
 </head>
 
 <body class="min-h-screen flex flex-col w-full antialiased font-sans">
-    <flux:header sticky container
-        class="top-0 z-50 py-3 w-full flex items-center bg-primary border-b border-primary-400 transition-all duration-300">
+    <div class="w-full h-8 bg-secondary backdrop-blur-md border-b border-white/5 flex items-center">
+        <flux class="flex items-center justify-between w-full h-full text-[10px] md:text-xs px-8">
+            <!-- Left: Contact Info -->
+            <div class="flex items-center gap-4 text-primary">
+                <div class="flex items-center gap-1.5 cursor-pointer">
+                    <flux:icon icon="phone" class="size-3" />
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="flex items-center gap-1.5 cursor-pointer hidden sm:flex">
+                    <flux:icon icon="envelope" class="size-3" />
+                    <span>support@qurah-academy.com</span>
+                </div>
+            </div>
+
+            <!-- Right: Socials -->
+            <div class="flex items-center gap-6 h-full">
+                <!-- Social Icons -->
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="Facebook">
+                        <i class="fa-brands fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="Instagram">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </a>
+                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="YouTube">
+                        <i class="fa-brands fa-youtube text-sm"></i>
+                    </a>
+                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="TikTok">
+                        <i class="fa-brands fa-tiktok text-sm"></i>
+                    </a>
+                </div>
+            </div>
+            </flux:container>
+    </div>
+
+    <flux:header container class=" py-3 w-full flex items-center bg-primary transition-all duration-300">
 
         <flux:sidebar.toggle class="lg:hidden text-white hover:bg-white/10" icon="bars-2" />
 
-        <x-app-logo imgUrl="/FZLogo.png" class="hidden lg:flex me-14" size="size-12" color="bg-tertiary-300" />
+        <x-app-logo imgUrl="/FZLogo.png" class="hidden lg:flex me-14" size="size-12" color="bg-secondary" />
 
         <flux:navbar class="-mb-px max-lg:hidden me-4 gap-2">
             <flux:navbar.item class="custom-nav-item" href="/" :current="request()->is('/')" wire:navigate>Home
@@ -61,7 +153,7 @@
             </flux:navbar.item>
 
             <flux:dropdown class="max-lg:hidden">
-                <flux:navbar.item icon:trailing="chevron-down">Favorites</flux:navbar.item>
+                <flux:navbar.item class="custom-nav-item" icon:trailing="chevron-down">Favorites</flux:navbar.item>
 
                 <flux:navmenu>
                     <flux:navmenu.item href="#">Marketing site</flux:navmenu.item>
@@ -72,26 +164,25 @@
 
             <!-- <flux:separator vertical variant="subtle" class="my-2" /> -->
 
-            <flux:navbar.item icon="magnifying-glass" href="#" label="Search" />
+            <flux:navbar.item icon="magnifying-glass" href="#" label="Search" class="header-icon" />
         </flux:navbar>
 
         <flux:spacer />
 
-        @auth
-            <x-desktop-user-menu />
-        @else
-            <flux:navbar>
-                <flux:navbar.item :href="route('login')">Log in</flux:navbar.item>
-                <flux:navbar.item :href="route('register')">Register</flux:navbar.item>
-            </flux:navbar>
-        @endauth
+        <flux:navbar class="gap-3">
+            <flux:navbar.item :href="route('login')"
+                class="!text-white/90 hover:!text-white transition-colors font-medium">Log in</flux:navbar.item>
+            <flux:button :href="route('register')" size="sm"
+                class="!bg-secondary !text-primary hover:!bg-secondary/90 border-none font-bold px-5 rounded-lg active:scale-95 transition-transform shadow-lg">
+                Register
+            </flux:button>
+        </flux:navbar>
 
     </flux:header>
 
-    <flux:sidebar sticky collapsible="mobile"
-        class="z-70 lg:hidden bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
+    <flux:sidebar sticky collapsible="mobile" class="fixed !top-0 !h-screen !z-[999] lg:hidden">
         <flux:sidebar.header>
-            <x-app-logo />
+            <x-app-logo imgUrl="/FZLogo.png" size="size-12" color="bg-secondary" />
 
             <flux:sidebar.collapse
                 class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
@@ -108,9 +199,21 @@
                 <flux:sidebar.item href="#">Android app</flux:sidebar.item>
                 <flux:sidebar.item href="#">Brand guidelines</flux:sidebar.item>
             </flux:sidebar.group>
+
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />
+
+        <div class="mt-6 pt-6 border-t border-white/10 flex flex-col gap-4 px-2">
+            <div class="flex items-center gap-3 text-white/70">
+                <flux:icon icon="phone" class="size-4 text-secondary" />
+                <span class="text-sm">+1 (555) 123-4567</span>
+            </div>
+            <div class="flex items-center gap-3 text-white/70">
+                <flux:icon icon="envelope" class="size-4 text-secondary" />
+                <span class="text-sm">support@qurah-academy.com</span>
+            </div>
+        </div>
     </flux:sidebar>
 
     <main class="flex-1 flex flex-col w-full h-full">

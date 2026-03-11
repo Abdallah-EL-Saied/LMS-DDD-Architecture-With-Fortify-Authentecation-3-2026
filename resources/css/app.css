@@ -30,23 +30,25 @@
     --color-primary-50: #F2F7F6;
     --color-primary-100: #E9F2F1;
     --color-primary-200: #B3CDC1;
-    --color-primary-300: #255E5A; /* Base Brand Teal */
+    --color-primary-300: #255E5A;
+    /* Base Brand Teal */
     --color-primary-400: #1D4B48;
     --color-primary-500: #143331;
 
     --color-primary: var(--color-primary-300);
     --color-primary-hover: var(--color-primary-400);
 
-    /* Tertiary/Accent: Vibrant Gold (#f4c025) - لون التميز والتبايُن */
+    /* secondary/Accent: Vibrant Gold (#f4c025) - لون التميز والتبايُن */
     /* يُستخدم في: اللوجو (SVG)، الأزرار الثانوية، الروابط النشطة (Active)، والتنبيهات المهمة */
-    --color-tertiary-100: #FEF9E6;
-    --color-tertiary-200: #FCE68E;
-    --color-tertiary-300: #f4c025; /* Base Brand Gold */
-    --color-tertiary-400: #C39A1D;
-    --color-tertiary-500: #937416;
+    --color-secondary-100: #FEF9E6;
+    --color-secondary-200: #FCE68E;
+    --color-secondary-300: #f4c025;
+    /* Base Brand Gold */
+    --color-secondary-400: #C39A1D;
+    --color-secondary-500: #937416;
 
-    --color-tertiary: var(--color-tertiary-300);
-    --color-tertiary-hover: var(--color-tertiary-400);
+    --color-secondary: var(--color-secondary-300);
+    --color-secondary-hover: var(--color-secondary-400);
 
     /* Neutrals & Surfaces - الألوان المحايدة والخلفيات */
     /* Surface: يُستخدم كخلفية أساسية للموقع لإعطاء مظهر "بريميوم" بدلاً من الأبيض الصريح */
@@ -61,8 +63,8 @@
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-tertiary-300);
-        --color-accent-content: var(--color-tertiary-300);
+        --color-accent: var(--color-secondary-300);
+        --color-accent-content: var(--color-secondary-300);
         --color-accent-foreground: var(--color-zinc-900);
     }
 }
@@ -108,6 +110,10 @@ body {
 }
 
 /* Fonts */
-.cairo-font { font-family: 'Cairo', sans-serif; }
-.roboto-font { font-family: 'Roboto', sans-serif; }
+.cairo-font {
+    font-family: 'Cairo', sans-serif;
+}
 
+.roboto-font {
+    font-family: 'Roboto', sans-serif;
+}

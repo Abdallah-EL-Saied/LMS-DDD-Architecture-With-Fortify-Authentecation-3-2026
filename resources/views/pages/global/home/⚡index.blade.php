@@ -4,20 +4,34 @@ use Livewire\Component;
 use Livewire\Attributes\Layout;
 
 new #[Layout('layouts.welcome')] class extends Component {
-    //
+
 };
 ?>
 
-<style>
-    .section-height {
-        min-height: calc(100vh - 73px);
-    }
-</style>
 
+<!-- Start Page -->
 <div>
-    <div class="section-height">
-        Start One
-    </div>
+    <style>
+        .section-height {
+            min-height: calc(100vh - 73px);
+        }
+
+        .photo-overlay {
+            background: rgba(26, 68, 65, 0.9);
+            opacity: 0;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .group:hover .photo-overlay {
+            opacity: 1;
+        }
+    </style>
+
+    <livewire:pages::global.home.hero />
+
+    <!-- ================== -->
+
     <div class="section-height">
         Start Two
     </div>
