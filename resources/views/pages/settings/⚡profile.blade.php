@@ -1,6 +1,6 @@
 <?php
 
-use App\Concerns\ProfileValidationRules;
+use App\Concerns\Traits\ProfileValidationRules;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -64,13 +64,13 @@ new #[Title('Profile settings')] class extends Component {
     #[Computed]
     public function hasUnverifiedEmail(): bool
     {
-        return Auth::user() instanceof MustVerifyEmail && ! Auth::user()->hasVerifiedEmail();
+        return Auth::user() instanceof MustVerifyEmail && !Auth::user()->hasVerifiedEmail();
     }
 
     #[Computed]
     public function showDeleteUser(): bool
     {
-        return ! Auth::user() instanceof MustVerifyEmail
+        return !Auth::user() instanceof MustVerifyEmail
             || (Auth::user() instanceof MustVerifyEmail && Auth::user()->hasVerifiedEmail());
     }
 }; ?>

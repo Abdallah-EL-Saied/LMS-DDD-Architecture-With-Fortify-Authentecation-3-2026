@@ -7,11 +7,13 @@ test('registration screen can be rendered', function () {
 });
 
 test('new users can register', function () {
+    \Spatie\Permission\Models\Role::create(['name' => 'student']);
+
     $response = $this->post(route('register.store'), [
         'name' => 'John Doe',
         'email' => 'test@example.com',
-        'password' => 'password',
-        'password_confirmation' => 'password',
+        'password' => 'Password123@',
+        'password_confirmation' => 'Password123@',
     ]);
 
     $response->assertSessionHasNoErrors()

@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\User;
+use App\Infrastructure\Persistence\Eloquent\Models\User;
 use Laravel\Fortify\Features;
 
 test('two factor challenge redirects to login when not authenticated', function () {
-    if (! Features::canManageTwoFactorAuthentication()) {
+    if (!Features::canManageTwoFactorAuthentication()) {
         $this->markTestSkipped('Two-factor authentication is not enabled.');
     }
 
@@ -14,7 +14,7 @@ test('two factor challenge redirects to login when not authenticated', function 
 });
 
 test('two factor challenge can be rendered', function () {
-    if (! Features::canManageTwoFactorAuthentication()) {
+    if (!Features::canManageTwoFactorAuthentication()) {
         $this->markTestSkipped('Two-factor authentication is not enabled.');
     }
 
@@ -27,6 +27,6 @@ test('two factor challenge can be rendered', function () {
 
     $this->post(route('login.store'), [
         'email' => $user->email,
-        'password' => 'password',
+        'password' => 'Password123@',
     ])->assertRedirect(route('two-factor.login'));
 });

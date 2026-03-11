@@ -1,10 +1,11 @@
 <?php
 
-use App\Concerns\PasswordValidationRules;
+use App\Concerns\Traits\PasswordValidationRules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
 
 new #[Title('Password settings')] class extends Component {
     use PasswordValidationRules;
@@ -12,6 +13,7 @@ new #[Title('Password settings')] class extends Component {
     public string $current_password = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public string $two_factor_code = '';
 
     /**
      * Update the password for the currently authenticated user.
@@ -19,12 +21,26 @@ new #[Title('Password settings')] class extends Component {
     public function updatePassword(): void
     {
         try {
-            $validated = $this->validate([
+            $rules = [
                 'current_password' => $this->currentPasswordRules(),
                 'password' => $this->passwordRules(),
-            ]);
+            ];
+
+            if (Auth::user()->two_factor_secret) {
+                $rules['two_factor_code'] = ['required', 'string'];
+            }
+
+            $validated = $this->validate($rules);
+
+            if (Auth::user()->two_factor_secret) {
+                if (!$this->validateTwoFactorCode($validated['two_factor_code'])) {
+                    throw ValidationException::withMessages([
+                        'two_factor_code' => [__('The provided two-factor authentication code was invalid.')],
+                    ]);
+                }
+            }
         } catch (ValidationException $e) {
-            $this->reset('current_password', 'password', 'password_confirmation');
+            $this->reset('current_password', 'password', 'password_confirmation', 'two_factor_code');
 
             throw $e;
         }
@@ -33,9 +49,18 @@ new #[Title('Password settings')] class extends Component {
             'password' => $validated['password'],
         ]);
 
-        $this->reset('current_password', 'password', 'password_confirmation');
+        $this->reset('current_password', 'password', 'password_confirmation', 'two_factor_code');
 
         $this->dispatch('password-updated');
+    }
+
+    /**
+     * Validate the two-factor authentication code.
+     */
+    protected function validateTwoFactorCode(string $code): bool
+    {
+        return app(TwoFactorAuthenticationProvider::class)
+            ->verify(decrypt(Auth::user()->two_factor_secret), $code);
     }
 }; ?>
 
@@ -46,27 +71,28 @@ new #[Title('Password settings')] class extends Component {
 
     <x-pages::settings.layout :heading="__('Update password')" :subheading="__('Ensure your account is using a long, random password to stay secure')">
         <form method="POST" wire:submit="updatePassword" class="mt-6 space-y-6">
-            <flux:input
-                wire:model="current_password"
-                :label="__('Current password')"
-                type="password"
-                required
-                autocomplete="current-password"
-            />
-            <flux:input
-                wire:model="password"
-                :label="__('New password')"
-                type="password"
-                required
-                autocomplete="new-password"
-            />
-            <flux:input
-                wire:model="password_confirmation"
-                :label="__('Confirm password')"
-                type="password"
-                required
-                autocomplete="new-password"
-            />
+            <flux:field>
+                <div class="flex items-center gap-2 mb-3">
+                    <flux:label>{{ __('Current password') }}</flux:label>
+                    <flux:tooltip
+                        content="{{ __('If you logged in via Google and have not set a password yet, your default password is password.') }}">
+                        <flux:icon.information-circle variant="mini" class="text-zinc-400 cursor-help" />
+                    </flux:tooltip>
+                </div>
+
+                <flux:input wire:model="current_password" type="password" required autocomplete="current-password"
+                    viewable />
+
+                <flux:error name="current_password" />
+            </flux:field>
+            <flux:input wire:model="password" :label="__('New password')" type="password" required
+                autocomplete="new-password" viewable />
+            <flux:input wire:model="password_confirmation" :label="__('Confirm password')" type="password" required
+                autocomplete="new-password" viewable />
+
+            @if (Auth::user()->two_factor_secret)
+                <flux:otp wire:model="two_factor_code" length="6" :label="__('Two-factor code')" />
+            @endif
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">

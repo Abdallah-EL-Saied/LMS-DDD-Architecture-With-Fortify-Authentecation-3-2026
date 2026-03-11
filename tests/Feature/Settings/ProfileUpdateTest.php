@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Infrastructure\Persistence\Eloquent\Models\User;
 use Livewire\Livewire;
 
 test('profile page is displayed', function () {
@@ -49,7 +49,7 @@ test('user can delete their account', function () {
     $this->actingAs($user);
 
     $response = Livewire::test('pages::settings.delete-user-modal')
-        ->set('password', 'password')
+        ->set('password', 'Password123@')
         ->call('deleteUser');
 
     $response
