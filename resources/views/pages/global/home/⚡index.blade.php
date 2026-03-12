@@ -30,21 +30,13 @@ new #[Layout('layouts.welcome')] class extends Component {
 
     <livewire:pages::global.home.hero />
 
-    <!-- ================== -->
+    <livewire:pages::global.home.features />
 
-    <div class="section-height">
-        Start Two
-    </div>
-    <div class="section-height">
-        Start Three
-    </div>
-    <div class="section-height">
-        Start Four
-    </div>
-    <div class="section-height">
-        Start Five
-    </div>
-    <div class="min-h-[calc(100vh/2)] bg-primary">
-        Start Six
-    </div>
+    <livewire:pages::global.home.stats />
+
+    <livewire:pages::global.home.how-it-works />
+
+    <livewire:pages::global.home.testimonials />
+
+    <livewire:pages::global.home.cta />
 </div>

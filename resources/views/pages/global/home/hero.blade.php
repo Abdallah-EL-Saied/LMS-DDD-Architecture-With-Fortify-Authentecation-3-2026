@@ -4,16 +4,16 @@ use Livewire\Component;
 
 new class extends Component {
     public array $heroPhotos = [
-        ['id' => 1, 'src' => 'assets/auth.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'Islamic Sciences', 'alt' => 'Islamic Education 1'],
-        ['id' => 2, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'Quran Memorization', 'alt' => 'Islamic Education 2'],
-        ['id' => 3, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'Arabic Language', 'alt' => 'Islamic Education 3'],
-        ['id' => 4, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'Hadith Studies', 'alt' => 'Islamic Education 4'],
-        ['id' => 5, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'Islamic History', 'alt' => 'Islamic Education 5'],
-        ['id' => 6, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'Character Building', 'alt' => 'Islamic Education 6'],
-        ['id' => 7, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'Arabic Language', 'alt' => 'Islamic Education 7'],
-        ['id' => 8, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'Hadith Studies', 'alt' => 'Islamic Education 8'],
-        ['id' => 9, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'Islamic History', 'alt' => 'Islamic Education 9'],
-        ['id' => 10, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'Character Building', 'alt' => 'Islamic Education 10'],
+        ['id' => 1, 'src' => 'assets/auth.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.islamic_sciences', 'alt' => 'landing.hero.subjects.islamic_sciences'],
+        ['id' => 2, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.quran', 'alt' => 'landing.hero.subjects.quran'],
+        ['id' => 3, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.arabic', 'alt' => 'landing.hero.subjects.arabic'],
+        ['id' => 4, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.hadith', 'alt' => 'landing.hero.subjects.hadith'],
+        ['id' => 5, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.history', 'alt' => 'landing.hero.subjects.history'],
+        ['id' => 6, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.nouranya', 'alt' => 'landing.hero.subjects.nouranya'],
+        ['id' => 7, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.ijazah', 'alt' => 'landing.hero.subjects.ijazah'],
+        ['id' => 8, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.character', 'alt' => 'landing.hero.subjects.character'],
+        ['id' => 9, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.fiqh', 'alt' => 'landing.hero.subjects.fiqh'],
+        ['id' => 10, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.nour_bayan', 'alt' => 'landing.hero.subjects.nour_bayan'],
     ];
 };
 ?>
@@ -30,30 +30,32 @@ new class extends Component {
     <div class="relative z-10 px-6 mx-auto flex flex-col items-center justify-between gap-8 py-12 h-full">
 
         <!-- Content Stack -->
-        <div class="flex flex-col gap-6 text-center max-w-7xl items-center">
+        <div class="flex flex-col gap-6 text-center max-w-7xl items-center"
+            dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
             <!-- Mobile Logo (Center) -->
             <div class="lg:hidden transition-transform duration-500 hover:scale-105">
                 <x-app-logo color="bg-secondary" size="size-24" imgUrl="/FZLogo.png" />
             </div>
 
-            <p class="text-secondary text-sm md:text-xl font-medium tracking-wide uppercase">
-                Education that yields light, and upbringing that blossoms with faith
+            <p
+                class="text-secondary text-sm md:text-xl font-medium tracking-wide {{ app()->getLocale() === 'ar' ? 'cairo-font' : 'uppercase' }}">
+                {{ __('landing.hero.subtitle') }}
             </p>
 
-            <h1 class="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight break-normal">
-                Fatema Al&#8209;Zahraa Educational Center
+            <h1
+                class="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight break-normal {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
+                {{ __('landing.hero.title') }}
             </h1>
 
             <p class="text-white/80 text-sm md:text-lg max-w-2xl leading-relaxed">
-                Join us now and start the journey of understanding Quran and Sunnah. expert tutors, flexible
-                schedules, and certified learning paths.
+                {{ __('landing.hero.description') }}
             </p>
 
             <!-- Action Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mt-4">
                 <flux:button variant="primary"
-                    class="bg-secondary text-primary hover:bg-secondary/90 border-none w-56 px-12 py-6 text-xl font-bold shadow-2xl rounded-full transition-all duration-300 hover:scale-105 active:scale-95">
-                    Book Free Trial
+                    class="bg-secondary text-primary hover:bg-secondary/90 border-none w-56 px-12 py-6 text-xl font-bold shadow-2xl rounded-full transition-all duration-300 hover:scale-105 active:scale-95 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
+                    {{ __('landing.hero.button') }}
                 </flux:button>
             </div>
         </div>
@@ -62,7 +64,7 @@ new class extends Component {
 
         <!-- Photos Carousel - True Queue Style Infinite Loop -->
         <div x-data="{ 
-                photos: {{ json_encode(array_map(fn($p) => array_merge($p, ['src' => asset($p['src'])]), $heroPhotos)) }},
+                photos: {{ json_encode(array_map(fn($p) => array_merge($p, ['src' => asset($p['src']), 'title' => __($p['title']), 'alt' => __($p['alt'])]), $heroPhotos)) }},
                 activeId: {{ $heroPhotos[0]['id'] }},
                 transitioning: false,
                 autoplayInterval: null,

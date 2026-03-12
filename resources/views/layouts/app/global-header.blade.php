@@ -104,11 +104,11 @@
             <div class="flex items-center gap-4 text-primary">
                 <div class="flex items-center gap-1.5 cursor-pointer">
                     <flux:icon icon="phone" class="size-3" />
-                    <span>+1 (555) 123-4567</span>
+                    <span dir="ltr">+20 100 000 0000</span>
                 </div>
                 <div class="flex items-center gap-1.5 cursor-pointer hidden sm:flex">
                     <flux:icon icon="envelope" class="size-3" />
-                    <span>support@qurah-academy.com</span>
+                    <span>info@fz-academy.com</span>
                 </div>
             </div>
 
@@ -140,41 +140,56 @@
         <x-app-logo imgUrl="/FZLogo.png" class="hidden lg:flex me-14" size="size-12" color="bg-secondary" />
 
         <flux:navbar class="-mb-px max-lg:hidden me-4 gap-2">
-            <flux:navbar.item class="custom-nav-item" href="/" :current="request()->is('/')" wire:navigate>Home
+            <flux:navbar.item class="custom-nav-item" href="/" :current="request()->is('/')" wire:navigate>
+                {{ __('global.header.home') }}
             </flux:navbar.item>
             <flux:navbar.item class="custom-nav-item" href="courses" :current="request()->is('courses')" wire:navigate>
-                Our Courses
+                {{ __('global.header.courses') }}
             </flux:navbar.item>
-            <flux:navbar.item class="custom-nav-item" href="about" :current="request()->is('about')" wire:navigate>About
-                Us
+            <flux:navbar.item class="custom-nav-item" href="about" :current="request()->is('about')" wire:navigate>
+                {{ __('global.header.about') }}
             </flux:navbar.item>
             <flux:navbar.item class="custom-nav-item" href="contact" :current="request()->is('contact')" wire:navigate>
-                Contact Us
+                {{ __('global.header.contact') }}
             </flux:navbar.item>
 
             <flux:dropdown class="max-lg:hidden">
-                <flux:navbar.item class="custom-nav-item" icon:trailing="chevron-down">Favorites</flux:navbar.item>
+                <flux:navbar.item class="custom-nav-item" icon:trailing="chevron-down">
+                    {{ __('global.header.favorites') }}</flux:navbar.item>
 
                 <flux:navmenu>
-                    <flux:navmenu.item href="#">Marketing site</flux:navmenu.item>
-                    <flux:navmenu.item href="#">Android app</flux:navmenu.item>
-                    <flux:navmenu.item href="#">Brand guidelines</flux:navmenu.item>
+                    <flux:navmenu.item href="#">مسار الحفظ</flux:navmenu.item>
+                    <flux:navmenu.item href="#">مسار الإجازات</flux:navmenu.item>
+                    <flux:navmenu.item href="#">تطوير الشخصية</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown>
 
             <!-- <flux:separator vertical variant="subtle" class="my-2" /> -->
 
-            <flux:navbar.item icon="magnifying-glass" href="#" label="Search" class="header-icon" />
+            <flux:navbar.item icon="magnifying-glass" href="#" label="{{ __('global.header.search') }}"
+                class="header-icon" />
         </flux:navbar>
 
         <flux:spacer />
 
         <flux:navbar class="gap-3">
+            <flux:dropdown class="hidden lg:block">
+                <flux:button variant="subtle" size="sm" class="!text-secondary hover:!bg-white/10 border-none px-2"
+                    icon="language">
+                </flux:button>
+                <flux:navmenu>
+                    <flux:navmenu.item :href="route('lang.switch', 'ar')" x-data @click="localStorage.setItem('locale', 'ar')"><span class="cairo-font">العربية</span>
+                    </flux:navmenu.item>
+                    <flux:navmenu.item :href="route('lang.switch', 'en')" x-data @click="localStorage.setItem('locale', 'en')">English</flux:navmenu.item>
+                </flux:navmenu>
+            </flux:dropdown>
+
             <flux:navbar.item :href="route('login')"
-                class="!text-white/90 hover:!text-white transition-colors font-medium">Log in</flux:navbar.item>
+                class="!text-white/90 hover:!text-white transition-colors font-medium">{{ __('global.header.login') }}
+            </flux:navbar.item>
             <flux:button :href="route('register')" size="sm"
-                class="!bg-secondary !text-primary hover:!bg-secondary/90 border-none font-bold px-5 rounded-lg active:scale-95 transition-transform shadow-lg">
-                Register
+                class="!bg-secondary !text-primary hover:!bg-secondary/90 border-none font-bold px-5 rounded-lg active:scale-95 transition-transform shadow-lg {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
+                {{ __('global.header.register') }}
             </flux:button>
         </flux:navbar>
 
@@ -189,15 +204,26 @@
         </flux:sidebar.header>
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="home" href="/" :current="request()->is('/')" wire:navigate>Home</flux:sidebar.item>
-            <flux:sidebar.item icon="book-open" href="courses" wire:navigate>Our Courses</flux:sidebar.item>
-            <flux:sidebar.item icon="information-circle" href="test" wire:navigate>About Us</flux:sidebar.item>
-            <flux:sidebar.item icon="envelope" href="contact" wire:navigate>Contact Us</flux:sidebar.item>
+            <flux:sidebar.item icon="home" href="/" :current="request()->is('/')" wire:navigate>
+                {{ __('global.header.home') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="book-open" href="courses" wire:navigate>{{ __('global.header.courses') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="information-circle" href="test" wire:navigate>{{ __('global.header.about') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="envelope" href="contact" wire:navigate>{{ __('global.header.contact') }}
+            </flux:sidebar.item>
 
-            <flux:sidebar.group expandable heading="Favorites" class="grid">
-                <flux:sidebar.item href="#">Marketing site</flux:sidebar.item>
-                <flux:sidebar.item href="#">Android app</flux:sidebar.item>
-                <flux:sidebar.item href="#">Brand guidelines</flux:sidebar.item>
+            <flux:sidebar.item icon="language"
+                href="{{ route('lang.switch', app()->getLocale() === 'ar' ? 'en' : 'ar') }}"
+                class="text-secondary! font-bold">
+                {{ app()->getLocale() === 'ar' ? 'English' : 'العربية' }}
+            </flux:sidebar.item>
+
+            <flux:sidebar.group expandable heading="{{ __('global.header.favorites') }}" class="grid">
+                <flux:sidebar.item href="#">مسار الحفظ</flux:sidebar.item>
+                <flux:sidebar.item href="#">مسار الإجازات</flux:sidebar.item>
+                <flux:sidebar.item href="#">تطوير الشخصية</flux:sidebar.item>
             </flux:sidebar.group>
 
         </flux:sidebar.nav>
@@ -207,11 +233,11 @@
         <div class="mt-6 pt-6 border-t border-white/10 flex flex-col gap-4 px-2">
             <div class="flex items-center gap-3 text-white/70">
                 <flux:icon icon="phone" class="size-4 text-secondary" />
-                <span class="text-sm">+1 (555) 123-4567</span>
+                <span class="text-sm" dir="ltr">+20 100 000 0000</span>
             </div>
             <div class="flex items-center gap-3 text-white/70">
                 <flux:icon icon="envelope" class="size-4 text-secondary" />
-                <span class="text-sm">support@qurah-academy.com</span>
+                <span class="text-sm">info@fz-academy.com</span>
             </div>
         </div>
     </flux:sidebar>
