@@ -27,13 +27,13 @@
 
     /* Primary: Royal Teal (#255E5A) - اللون الأساسي للهوية */
     /* يُستخدم في: الهيدر، الأزرار الأساسية، العناوين الكبيرة، والمساحات التي تمثل البراند */
-    --color-primary-50: #F2F7F6;
-    --color-primary-100: #E9F2F1;
-    --color-primary-200: #B3CDC1;
-    --color-primary-300: #255E5A;
+    --color-primary-50: #EEF7F6;
+    --color-primary-100: #D4EBE9;
+    --color-primary-200: #AED7D4;
+    --color-primary-300: #036A62;
     /* Base Brand Teal */
-    --color-primary-400: #1D4B48;
-    --color-primary-500: #143331;
+    --color-primary-400: #02504A;
+    --color-primary-500: #013D38;
 
     --color-primary: var(--color-primary-300);
     --color-primary-hover: var(--color-primary-400);
@@ -116,4 +116,46 @@ body {
 
 .roboto-font {
     font-family: 'Roboto', sans-serif;
+}
+
+/* --- Global Scrollbar Styling (تخصيص شريط التمرير) --- */
+
+/* تخصيص شكل شريط التمرير بالكامل (للمتصفحات مثل Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+    /* عرض الشريط الرأسي */
+    height: 10px;
+    /* ارتفاع الشريط الأفقي */
+}
+
+/* تخصيص المسار الذي يتحرك فيه المؤشر (الخلفية الكلية للشريط) */
+::-webkit-scrollbar-track {
+    background: var(--color-primary-300);
+    /* لون المسار نفسه (التيل الغامق) */
+}
+
+/* تخصيص المؤشر أو المقبض الذي يتم سحبه (الجزئية المتحركة) */
+::-webkit-scrollbar-thumb {
+    background: var(--color-secondary-300);
+    /* لون المقبض (الذهبي) */
+    border: 2px solid var(--color-primary-300);
+    /* مسافة وهمية حول المقبض من نفس لون الخلفية */
+    border-radius: 10px;
+    /* جعل أطراف المقبض دائرية */
+    transition: all 0.3s ease;
+    /* إضافة نعومة عند التغيير */
+}
+
+/* تغيير لون المقبض عند تمرير الماوس عليه */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary-200);
+    /* لون ذهبي أفتح قليلاً */
+}
+
+/* دعم متصفح Firefox (فايرفوكس يستخدم خواص مختلفة) */
+* {
+    scrollbar-width: thin;
+    /* جعل الشريط رفيعاً */
+    scrollbar-color: var(--color-secondary-300) var(--color-primary-300);
+    /* لون المقبض ثم لون المسار */
 }

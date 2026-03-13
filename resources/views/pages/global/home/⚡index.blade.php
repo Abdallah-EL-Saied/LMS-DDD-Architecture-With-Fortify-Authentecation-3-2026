@@ -10,7 +10,7 @@ new #[Layout('layouts.welcome')] class extends Component {
 
 
 <!-- Start Page -->
-<div>
+<div class="bg-surface">
     <style>
         .section-height {
             min-height: calc(100vh - 73px);
@@ -29,14 +29,12 @@ new #[Layout('layouts.welcome')] class extends Component {
     </style>
 
     <livewire:pages::global.home.hero />
-
     <livewire:pages::global.home.features />
-
     <livewire:pages::global.home.stats />
-
-    <livewire:pages::global.home.how-it-works />
-
+    <livewire:pages::global.home.courses />
+    <livewire:pages::global.home.gallery />
     <livewire:pages::global.home.testimonials />
-
+    <livewire:pages::global.home.how-it-works />
+    <livewire:pages::global.home.pricing />
     <livewire:pages::global.home.cta />
 </div>

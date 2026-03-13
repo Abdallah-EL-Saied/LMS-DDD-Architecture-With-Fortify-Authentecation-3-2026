@@ -8,8 +8,7 @@
                 <div class="flex items-center gap-3 mb-6">
                     <x-app-logo color="bg-tertiary" size="size-12" imgUrl="/FZLogo.png" />
                     <span
-                        class="text-2xl font-bold text-white {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">فاطمة
-                        الزهراء</span>
+                        class="text-2xl font-bold text-white {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">{{ __('global.footer.brand_name') }}</span>
                 </div>
                 <p class="text-white/70 leading-relaxed text-sm mb-6">
                     {{ __('global.footer.about') }}
@@ -33,7 +32,8 @@
             <!-- Quick Links -->
             <div>
                 <h3 class="text-lg font-bold text-white mb-6 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                    {{ __('global.footer.quick_links') }}</h3>
+                    {{ __('global.footer.quick_links') }}
+                </h3>
                 <ul class="space-y-3">
                     <li><a href="{{ route('home') }}"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
@@ -50,7 +50,7 @@
                     <li><a href="#"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            المعلمون</a></li>
+                            {{ __('global.footer.teachers') }}</a></li>
                     <li><a href="#"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
@@ -61,35 +61,37 @@
             <!-- Learning Paths -->
             <div>
                 <h3 class="text-lg font-bold text-white mb-6 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                    {{ __('global.footer.paths') }}</h3>
+                    {{ __('global.footer.paths') }}
+                </h3>
                 <ul class="space-y-3">
                     <li><a href="#"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            حفظ القرآن الكريم</a></li>
+                            {{ __('global.footer.path_quran') }}</a></li>
                     <li><a href="#"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            القاعدة النورانية</a></li>
+                            {{ __('global.footer.path_noorania') }}</a></li>
                     <li><a href="#"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            اللغة العربية لغير الناطقين بها</a></li>
+                            {{ __('global.footer.path_arabic') }}</a></li>
                     <li><a href="#"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            الدراسات الإسلامية</a></li>
+                            {{ __('global.footer.path_islamic') }}</a></li>
                     <li><a href="#"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            الإجازات والأسانيد</a></li>
+                            {{ __('global.footer.path_ijazah') }}</a></li>
                 </ul>
             </div>
 
             <!-- Contact Info -->
             <div>
                 <h3 class="text-lg font-bold text-white mb-6 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                    {{ __('global.footer.contact') }}</h3>
+                    {{ __('global.footer.contact') }}
+                </h3>
                 <ul class="space-y-4">
                     <li class="flex items-start gap-3">
                         <i class="fa-solid fa-location-dot text-lg text-tertiary mt-0.5 w-5 text-center"></i>

@@ -15,12 +15,7 @@ new class extends Component {
 <div class="py-24 bg-surface-dark/5" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-16">
-            <h2
-                class="text-3xl md:text-4xl font-bold text-primary mb-4 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('landing.testimonials.heading') }}</h2>
-            <div class="w-24 h-1.5 bg-tertiary mx-auto rounded-full"></div>
-        </div>
+        <x-section-heading :title="__('landing.testimonials.heading')" :description="__('landing.testimonials.subheading')" show-line />
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($reviews as $review)
@@ -28,7 +23,7 @@ new class extends Component {
                     class="bg-white p-8 rounded-2xl shadow-sm border border-zinc-100 hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center">
 
                     <!-- Stars -->
-                    <div class="flex gap-1 mb-6 text-tertiary">
+                    <div class="flex gap-1 mb-6 text-secondary">
                         @for($i = 0; $i < $review['rating']; $i++)
                             <i class="fa-solid fa-star text-lg text-tertiary"></i>
                         @endfor

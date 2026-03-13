@@ -155,12 +155,13 @@
 
             <flux:dropdown class="max-lg:hidden">
                 <flux:navbar.item class="custom-nav-item" icon:trailing="chevron-down">
-                    {{ __('global.header.favorites') }}</flux:navbar.item>
+                    {{ __('global.header.favorites') }}
+                </flux:navbar.item>
 
                 <flux:navmenu>
-                    <flux:navmenu.item href="#">مسار الحفظ</flux:navmenu.item>
-                    <flux:navmenu.item href="#">مسار الإجازات</flux:navmenu.item>
-                    <flux:navmenu.item href="#">تطوير الشخصية</flux:navmenu.item>
+                    <flux:navmenu.item href="#">{{ __('global.header.fav_hifz') }}</flux:navmenu.item>
+                    <flux:navmenu.item href="#">{{ __('global.header.fav_ijazah') }}</flux:navmenu.item>
+                    <flux:navmenu.item href="#">{{ __('global.header.fav_personal') }}</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown>
 
@@ -178,9 +179,11 @@
                     icon="language">
                 </flux:button>
                 <flux:navmenu>
-                    <flux:navmenu.item :href="route('lang.switch', 'ar')" x-data @click="localStorage.setItem('locale', 'ar')"><span class="cairo-font">العربية</span>
+                    <flux:navmenu.item :href="route('lang.switch', 'ar')" x-data
+                        @click="localStorage.setItem('locale', 'ar')"><span class="cairo-font">العربية</span>
                     </flux:navmenu.item>
-                    <flux:navmenu.item :href="route('lang.switch', 'en')" x-data @click="localStorage.setItem('locale', 'en')">English</flux:navmenu.item>
+                    <flux:navmenu.item :href="route('lang.switch', 'en')" x-data
+                        @click="localStorage.setItem('locale', 'en')">English</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown>
 
@@ -221,9 +224,9 @@
             </flux:sidebar.item>
 
             <flux:sidebar.group expandable heading="{{ __('global.header.favorites') }}" class="grid">
-                <flux:sidebar.item href="#">مسار الحفظ</flux:sidebar.item>
-                <flux:sidebar.item href="#">مسار الإجازات</flux:sidebar.item>
-                <flux:sidebar.item href="#">تطوير الشخصية</flux:sidebar.item>
+                <flux:sidebar.item href="#">{{ __('global.header.fav_hifz') }}</flux:sidebar.item>
+                <flux:sidebar.item href="#">{{ __('global.header.fav_ijazah') }}</flux:sidebar.item>
+                <flux:sidebar.item href="#">{{ __('global.header.fav_personal') }}</flux:sidebar.item>
             </flux:sidebar.group>
 
         </flux:sidebar.nav>

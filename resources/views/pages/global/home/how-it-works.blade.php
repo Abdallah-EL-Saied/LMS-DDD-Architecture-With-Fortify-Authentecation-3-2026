@@ -10,12 +10,8 @@ new class extends Component {
 <div class="py-24 bg-white" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-20">
-            <h2
-                class="text-3xl md:text-4xl font-bold text-primary mb-4 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('landing.how_it_works.heading') }}</h2>
-            <p class="text-lg text-zinc-600 max-w-2xl mx-auto">{{ __('landing.how_it_works.subheading') }}</p>
-        </div>
+        <x-section-heading :title="__('landing.how_it_works.heading')"
+            :description="__('landing.how_it_works.subheading')" />
 
         <div class="relative max-w-5xl mx-auto">
             <!-- Connecting Line (Desktop) -->
