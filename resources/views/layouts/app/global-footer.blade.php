@@ -13,18 +13,26 @@
                 <p class="text-white/70 leading-relaxed text-sm mb-6">
                     {{ __('global.footer.about') }}
                 </p>
-                <div class="flex gap-4">
-                    <a href="#"
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <a href="https://www.facebook.com/profile.php?id=61556978948907" target="_blank"
                         class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-tertiary hover:text-primary transition-colors">
                         <i class="fa-brands fa-facebook-f text-lg"></i>
                     </a>
-                    <a href="#"
+                    <a href="https://www.instagram.com/mrkzftmlzhr?igsh=MTRheWJscXF5OGxwbg==" target="_blank"
                         class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-tertiary hover:text-primary transition-colors">
-                        <i class="fa-brands fa-youtube text-lg"></i>
+                        <i class="fa-brands fa-instagram text-lg"></i>
                     </a>
-                    <a href="#"
+                    <a href="https://wa.me/201122920352" target="_blank"
                         class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-tertiary hover:text-primary transition-colors">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </a>
+                    <a href="https://t.me/fatema1777" target="_blank"
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-tertiary hover:text-primary transition-colors">
+                        <i class="fa-brands fa-telegram text-lg"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@fatemaalzahraa-m9b" target="_blank"
+                        class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-tertiary hover:text-primary transition-colors">
+                        <i class="fa-brands fa-youtube text-lg"></i>
                     </a>
                 </div>
             </div>
@@ -39,11 +47,11 @@
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
                             {{ __('global.header.home') }}</a></li>
-                    <li><a href="#"
+                    <li><a href="{{ route('about') }}"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
                             {{ __('global.header.about') }}</a></li>
-                    <li><a href="#"
+                    <li><a href="{{ route('courses') }}"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
                             {{ __('global.header.courses') }}</a></li>
@@ -99,11 +107,11 @@
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-solid fa-phone text-lg text-tertiary w-5 text-center"></i>
-                        <span class="text-white/70 text-sm" dir="ltr">+20 100 000 0000</span>
+                        <span class="text-white/70 text-sm" dir="ltr">+20 112 292 0352</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-solid fa-envelope text-lg text-tertiary w-5 text-center"></i>
-                        <span class="text-white/70 text-sm">info@fz-academy.com</span>
+                        <span class="text-white/70 text-sm">info@fatemacenter.com</span>
                     </li>
                 </ul>
             </div>

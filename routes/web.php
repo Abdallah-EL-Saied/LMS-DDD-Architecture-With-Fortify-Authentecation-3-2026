@@ -15,7 +15,9 @@ Route::get('lang/{locale}', function ($locale) {
 
 Route::middleware(['guest'])->group(function () {
     Route::livewire('/', 'pages::global.home.index')->name('home');
-    Route::livewire('/courses', 'pages::global.courses')->name('courses');
+    Route::livewire('/courses', 'pages::global.courses.index')->name('courses');
+    Route::livewire('/about', 'pages::global.about.index')->name('about');
+    Route::livewire('/contact', 'pages::global.contact.index')->name('contact');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

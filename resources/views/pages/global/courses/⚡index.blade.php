@@ -1,19 +1,22 @@
 <?php
 
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
-new class extends Component {
-    public array $courses = [];
+new #[Layout('layouts.welcome')] class extends Component {
+    public array $allCourses = [];
 
     public function mount()
     {
-        $this->courses = [
+        $this->allCourses = [
             [
                 'icon' => 'fa-solid fa-quran',
                 'title' => __('landing.courses.c1_title'),
                 'desc' => __('landing.courses.c1_desc'),
                 'color' => 'primary',
                 'bg' => 'bg-primary/10',
+                'image' => asset('assets/hero.webp'),
+                'badge' => __('landing.courses.c1_title'),
             ],
             [
                 'icon' => 'fa-solid fa-book-quran',
@@ -21,6 +24,7 @@ new class extends Component {
                 'desc' => __('landing.courses.c2_desc'),
                 'color' => 'tertiary',
                 'bg' => 'bg-tertiary/20',
+                'image' => asset('assets/auth.webp'),
             ],
             [
                 'icon' => 'fa-solid fa-language',
@@ -28,6 +32,7 @@ new class extends Component {
                 'desc' => __('landing.courses.c3_desc'),
                 'color' => 'primary',
                 'bg' => 'bg-primary/10',
+                'image' => asset('assets/hero.webp'),
             ],
             [
                 'icon' => 'fa-solid fa-mosque',
@@ -35,6 +40,7 @@ new class extends Component {
                 'desc' => __('landing.courses.c4_desc'),
                 'color' => 'tertiary',
                 'bg' => 'bg-tertiary/20',
+                'image' => asset('assets/auth.webp'),
             ],
             [
                 'icon' => 'fa-solid fa-scroll',
@@ -42,6 +48,7 @@ new class extends Component {
                 'desc' => __('landing.courses.c5_desc'),
                 'color' => 'primary',
                 'bg' => 'bg-primary/10',
+                'image' => asset('assets/hero.webp'),
             ],
             [
                 'icon' => 'fa-solid fa-child',
@@ -49,29 +56,23 @@ new class extends Component {
                 'desc' => __('landing.courses.c6_desc'),
                 'color' => 'tertiary',
                 'bg' => 'bg-tertiary/20',
+                'image' => asset('assets/auth.webp'),
             ],
+            // More courses can be added here
         ];
     }
 };
 ?>
 
-<div class="py-24 bg-white" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Courses Page -->
+<div dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" class="bg-zinc-50 min-h-screen">
+    <x-page-header :title="__('global.header.courses')" :subtitle="__('landing.courses.subheading')" />
 
-        <x-section-heading :title="__('landing.courses.heading')" :description="__('landing.courses.subheading')"
-            show-line />
-
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($courses as $course)
+            @foreach ($allCourses as $course)
                 <x-course-card :course="$course" />
             @endforeach
-        </div>
-
-        <div class="text-center mt-12">
-            <flux:button variant="primary" href="/courses"
-                class="bg-primary text-white hover:bg-primary-400 border-none px-10 py-4 text-lg font-bold rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('landing.courses.view_all') }}
-            </flux:button>
         </div>
     </div>
 </div>

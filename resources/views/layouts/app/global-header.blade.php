@@ -98,105 +98,129 @@
 </head>
 
 <body class="min-h-screen flex flex-col w-full antialiased font-sans">
-    <div class="w-full h-8 bg-secondary backdrop-blur-md border-b border-white/5 flex items-center">
-        <flux class="flex items-center justify-between w-full h-full text-[10px] md:text-xs px-8">
-            <!-- Left: Contact Info -->
-            <div class="flex items-center gap-4 text-primary">
-                <div class="flex items-center gap-1.5 cursor-pointer">
-                    <flux:icon icon="phone" class="size-3" />
-                    <span dir="ltr">+20 100 000 0000</span>
+    <div x-data="{ 
+        scrolledDown: false, 
+        isAtTop: true,
+        lastScrollTop: 0,
+        handleScroll() {
+            let st = window.pageYOffset || document.documentElement.scrollTop;
+            this.isAtTop = st <= 10;
+            
+            if (st > this.lastScrollTop && st > 100) {
+                this.scrolledDown = true;
+            } else if (st < this.lastScrollTop) {
+                this.scrolledDown = false;
+            }
+            this.lastScrollTop = st <= 0 ? 0 : st;
+        }
+    }" @scroll.window="handleScroll" class="sticky top-0 z-[990] w-full transition-all duration-300" :class="{
+        '-translate-y-full': scrolledDown,
+        'translate-y-0': !scrolledDown,
+        'shadow-[0_10px_30px_-15px_rgba(0,0,0,0.3)]': !scrolledDown && !isAtTop
+    }">
+        <div class="w-full h-8 bg-secondary backdrop-blur-md border-b border-white/5 flex items-center">
+            <flux class="flex items-center justify-between w-full h-full text-[10px] md:text-xs px-8">
+                <!-- Left: Contact Info -->
+                <div class="flex items-center gap-4 text-primary">
+                    <div class="flex items-center gap-1.5 cursor-pointer">
+                        <flux:icon icon="phone" class="size-3" />
+                        <span dir="ltr">+20 100 000 0000</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 cursor-pointer hidden sm:flex">
+                        <flux:icon icon="envelope" class="size-3" />
+                        <span>info@fz-academy.com</span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-1.5 cursor-pointer hidden sm:flex">
-                    <flux:icon icon="envelope" class="size-3" />
-                    <span>info@fz-academy.com</span>
+
+                <!-- Right: Socials -->
+                <div class="flex items-center gap-6 h-full">
+                    <!-- Social Icons -->
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="text-primary hover:scale-110 transition-transform" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="text-primary hover:scale-110 transition-transform" title="Instagram">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="text-primary hover:scale-110 transition-transform" title="YouTube">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                        <a href="#" class="text-primary hover:scale-110 transition-transform" title="TikTok">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
+                </flux:container>
+        </div>
 
-            <!-- Right: Socials -->
-            <div class="flex items-center gap-6 h-full">
-                <!-- Social Icons -->
-                <div class="flex items-center gap-4">
-                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="Facebook">
-                        <i class="fa-brands fa-facebook-f text-sm"></i>
-                    </a>
-                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="Instagram">
-                        <i class="fa-brands fa-instagram text-sm"></i>
-                    </a>
-                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="YouTube">
-                        <i class="fa-brands fa-youtube text-sm"></i>
-                    </a>
-                    <a href="#" class="text-primary hover:scale-110 transition-transform" title="TikTok">
-                        <i class="fa-brands fa-tiktok text-sm"></i>
-                    </a>
-                </div>
-            </div>
-            </flux:container>
-    </div>
+        <flux:header container class=" py-3 w-full flex items-center bg-primary transition-all duration-300">
 
-    <flux:header container class=" py-3 w-full flex items-center bg-primary transition-all duration-300">
+            <flux:sidebar.toggle class="lg:hidden text-white hover:bg-white/10" icon="bars-2" />
 
-        <flux:sidebar.toggle class="lg:hidden text-white hover:bg-white/10" icon="bars-2" />
+            <x-app-logo imgUrl="/FZLogo.png" class="hidden lg:flex me-14" size="size-12" color="bg-secondary" />
 
-        <x-app-logo imgUrl="/FZLogo.png" class="hidden lg:flex me-14" size="size-12" color="bg-secondary" />
-
-        <flux:navbar class="-mb-px max-lg:hidden me-4 gap-2">
-            <flux:navbar.item class="custom-nav-item" href="/" :current="request()->is('/')" wire:navigate>
-                {{ __('global.header.home') }}
-            </flux:navbar.item>
-            <flux:navbar.item class="custom-nav-item" href="courses" :current="request()->is('courses')" wire:navigate>
-                {{ __('global.header.courses') }}
-            </flux:navbar.item>
-            <flux:navbar.item class="custom-nav-item" href="about" :current="request()->is('about')" wire:navigate>
-                {{ __('global.header.about') }}
-            </flux:navbar.item>
-            <flux:navbar.item class="custom-nav-item" href="contact" :current="request()->is('contact')" wire:navigate>
-                {{ __('global.header.contact') }}
-            </flux:navbar.item>
-
-            <flux:dropdown class="max-lg:hidden">
-                <flux:navbar.item class="custom-nav-item" icon:trailing="chevron-down">
-                    {{ __('global.header.favorites') }}
+            <flux:navbar class="-mb-px max-lg:hidden me-4 gap-2">
+                <flux:navbar.item class="custom-nav-item" href="/" :current="request()->is('/')" wire:navigate>
+                    {{ __('global.header.home') }}
+                </flux:navbar.item>
+                <flux:navbar.item class="custom-nav-item" href="courses" :current="request()->is('courses')"
+                    wire:navigate>
+                    {{ __('global.header.courses') }}
+                </flux:navbar.item>
+                <flux:navbar.item class="custom-nav-item" href="about" :current="request()->is('about')" wire:navigate>
+                    {{ __('global.header.about') }}
+                </flux:navbar.item>
+                <flux:navbar.item class="custom-nav-item" href="contact" :current="request()->is('contact')"
+                    wire:navigate>
+                    {{ __('global.header.contact') }}
                 </flux:navbar.item>
 
-                <flux:navmenu>
-                    <flux:navmenu.item href="#">{{ __('global.header.fav_hifz') }}</flux:navmenu.item>
-                    <flux:navmenu.item href="#">{{ __('global.header.fav_ijazah') }}</flux:navmenu.item>
-                    <flux:navmenu.item href="#">{{ __('global.header.fav_personal') }}</flux:navmenu.item>
-                </flux:navmenu>
-            </flux:dropdown>
+                <flux:dropdown class="max-lg:hidden">
+                    <flux:navbar.item class="custom-nav-item" icon:trailing="chevron-down">
+                        {{ __('global.header.favorites') }}
+                    </flux:navbar.item>
 
-            <!-- <flux:separator vertical variant="subtle" class="my-2" /> -->
+                    <flux:navmenu>
+                        <flux:navmenu.item href="#">{{ __('global.header.fav_hifz') }}</flux:navmenu.item>
+                        <flux:navmenu.item href="#">{{ __('global.header.fav_ijazah') }}</flux:navmenu.item>
+                        <flux:navmenu.item href="#">{{ __('global.header.fav_personal') }}</flux:navmenu.item>
+                    </flux:navmenu>
+                </flux:dropdown>
 
-            <flux:navbar.item icon="magnifying-glass" href="#" label="{{ __('global.header.search') }}"
-                class="header-icon" />
-        </flux:navbar>
+                <!-- <flux:separator vertical variant="subtle" class="my-2" /> -->
 
-        <flux:spacer />
+                <flux:navbar.item icon="magnifying-glass" href="#" label="{{ __('global.header.search') }}"
+                    class="header-icon" />
+            </flux:navbar>
 
-        <flux:navbar class="gap-3">
-            <flux:dropdown class="hidden lg:block">
-                <flux:button variant="subtle" size="sm" class="!text-secondary hover:!bg-white/10 border-none px-2"
-                    icon="language">
+            <flux:spacer />
+
+            <flux:navbar class="gap-3">
+                <flux:dropdown class="hidden lg:block">
+                    <flux:button variant="subtle" size="sm" class="!text-secondary hover:!bg-white/10 border-none px-2"
+                        icon="language">
+                    </flux:button>
+                    <flux:navmenu>
+                        <flux:navmenu.item :href="route('lang.switch', 'ar')" x-data
+                            @click="localStorage.setItem('locale', 'ar')"><span class="cairo-font">العربية</span>
+                        </flux:navmenu.item>
+                        <flux:navmenu.item :href="route('lang.switch', 'en')" x-data
+                            @click="localStorage.setItem('locale', 'en')">English</flux:navmenu.item>
+                    </flux:navmenu>
+                </flux:dropdown>
+
+                <flux:navbar.item :href="route('login')"
+                    class="!text-white/90 hover:!text-white transition-colors font-medium">
+                    {{ __('global.header.login') }}
+                </flux:navbar.item>
+                <flux:button :href="route('register')" size="sm"
+                    class="!bg-secondary !text-primary hover:!bg-secondary/90 border-none font-bold px-5 rounded-lg active:scale-95 transition-transform shadow-lg {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
+                    {{ __('global.header.register') }}
                 </flux:button>
-                <flux:navmenu>
-                    <flux:navmenu.item :href="route('lang.switch', 'ar')" x-data
-                        @click="localStorage.setItem('locale', 'ar')"><span class="cairo-font">العربية</span>
-                    </flux:navmenu.item>
-                    <flux:navmenu.item :href="route('lang.switch', 'en')" x-data
-                        @click="localStorage.setItem('locale', 'en')">English</flux:navmenu.item>
-                </flux:navmenu>
-            </flux:dropdown>
+            </flux:navbar>
 
-            <flux:navbar.item :href="route('login')"
-                class="!text-white/90 hover:!text-white transition-colors font-medium">{{ __('global.header.login') }}
-            </flux:navbar.item>
-            <flux:button :href="route('register')" size="sm"
-                class="!bg-secondary !text-primary hover:!bg-secondary/90 border-none font-bold px-5 rounded-lg active:scale-95 transition-transform shadow-lg {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('global.header.register') }}
-            </flux:button>
-        </flux:navbar>
-
-    </flux:header>
+        </flux:header>
+    </div>
 
     <flux:sidebar sticky collapsible="mobile" class="fixed !top-0 !h-screen !z-[999] lg:hidden">
         <flux:sidebar.header>
