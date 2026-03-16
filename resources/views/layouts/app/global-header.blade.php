@@ -5,6 +5,7 @@
         isAtTop: true,
         lastScrollTop: 0,
         handleScroll() {
+            if (this.mobileMenuOpen) return;
             let st = window.pageYOffset || document.documentElement.scrollTop;
             this.isAtTop = st <= 10;
             
@@ -87,9 +88,11 @@
     <x-page-loader />
 
     <!-- Header Wrapper -->
-    <div class="sticky top-0 z-[100] w-full transition-transform duration-300 bg-primary" :class="{
+    <div class="z-[100] w-full transition-transform duration-300 bg-primary" :class="{
+        'sticky top-0': !mobileMenuOpen,
+        'fixed top-0 translate-y-0': mobileMenuOpen,
         '-translate-y-full': scrolledDown && !mobileMenuOpen,
-        'translate-y-0': !scrolledDown || mobileMenuOpen,
+        'translate-y-0': !scrolledDown && !mobileMenuOpen,
         'shadow-[0_10px_30px_-15px_rgba(0,0,0,0.3)]': !isAtTop && (!scrolledDown || mobileMenuOpen)
     }">
         <div class="w-full h-8 bg-secondary border-b border-black/5 flex items-center relative z-20">
