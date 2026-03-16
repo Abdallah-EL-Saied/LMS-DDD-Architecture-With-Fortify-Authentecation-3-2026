@@ -1,0 +1,59 @@
+name: Build and Deploy Laravel
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Build Frontend
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: samkirkland/ftp-deploy-action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_Server }}
+          username: ${{ secrets.FTP_Username }}
+          password: ${{ secrets.FTP_Password }}
+          server-dir: domains/fatemaalzahraa.com/public_html/dev/
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/**
+            vendor/**
+
+      - name: Run Laravel Commands
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_SERVER_HOST }}
+          username: ${{ secrets.SSH_SERVER_USER }}
+          password: ${{ secrets.SSH_SERVER_PASS }}
+          script: |
+            cd /home/u410442266/domains/fatemaalzahraa.com/public_html/dev
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan optimize
