@@ -6,7 +6,7 @@
     'showLine' => false,
 ])
 
-<div {{ $attributes->merge(['class' => 'text-center max-w-3xl mx-auto mb-16 -mt-10 relative py-16']) }}>
+<div {{ $attributes->merge(['class' => 'text-center max-w-4xl mx-auto sm:mb-8 -mt-12 relative py-16']) }}>
     {{-- Decorative background element --}}
     @if($imgUrl)
         <div class="absolute inset-0 -top-10 opacity-7 pointer-events-none flex justify-center overflow-hidden">

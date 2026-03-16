@@ -11,57 +11,57 @@ new class extends Component {
             [
                 'num' => '01',
                 'icon' => 'fa-solid fa-chalkboard-user',
-                'title' => __('landing.features.f1_title'),
-                'desc' => __('landing.features.f1_desc'),
+                'title' => __('home.features.f1_title'),
+                'desc' => __('home.features.f1_desc'),
                 'img' => 'assets/hero.webp',
             ],
             [
                 'num' => '02',
                 'icon' => 'fa-solid fa-tag',
-                'title' => __('landing.features.f2_title'),
-                'desc' => __('landing.features.f2_desc'),
+                'title' => __('home.features.f2_title'),
+                'desc' => __('home.features.f2_desc'),
                 'img' => 'assets/hero.webp',
             ],
             [
                 'num' => '03',
                 'icon' => 'fa-solid fa-file-invoice',
-                'title' => __('landing.features.f3_title'),
-                'desc' => __('landing.features.f3_desc'),
+                'title' => __('home.features.f3_title'),
+                'desc' => __('home.features.f3_desc'),
                 'img' => 'assets/hero.webp',
             ],
             [
                 'num' => '04',
                 'icon' => 'fa-solid fa-people-arrows',
-                'title' => __('landing.features.f4_title'),
-                'desc' => __('landing.features.f4_desc'),
+                'title' => __('home.features.f4_title'),
+                'desc' => __('home.features.f4_desc'),
                 'img' => 'assets/hero.webp',
             ],
             [
                 'num' => '05',
                 'icon' => 'fa-solid fa-clock-rotate-left',
-                'title' => __('landing.features.f5_title'),
-                'desc' => __('landing.features.f5_desc'),
+                'title' => __('home.features.f5_title'),
+                'desc' => __('home.features.f5_desc'),
                 'img' => 'assets/auth.webp',
             ],
             [
                 'num' => '06',
                 'icon' => 'fa-solid fa-users',
-                'title' => __('landing.features.f6_title'),
-                'desc' => __('landing.features.f6_desc'),
+                'title' => __('home.features.f6_title'),
+                'desc' => __('home.features.f6_desc'),
                 'img' => 'assets/auth.webp',
             ],
             [
                 'num' => '07',
                 'icon' => 'fa-solid fa-venus-mars',
-                'title' => __('landing.features.f7_title'),
-                'desc' => __('landing.features.f7_desc'),
+                'title' => __('home.features.f7_title'),
+                'desc' => __('home.features.f7_desc'),
                 'img' => 'assets/auth.webp',
             ],
             [
                 'num' => '08',
                 'icon' => 'fa-solid fa-award',
-                'title' => __('landing.features.f8_title'),
-                'desc' => __('landing.features.f8_desc'),
+                'title' => __('home.features.f8_title'),
+                'desc' => __('home.features.f8_desc'),
                 'img' => 'assets/auth.webp',
             ],
         ];
@@ -72,7 +72,7 @@ new class extends Component {
 <div class="py-24 bg-surface" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <x-section-heading :title="__('landing.features.heading')" :description="__('landing.features.subheading')" />
+        <x-section-heading :title="__('home.features.heading')" :description="__('home.features.subheading')" />
 
         {{-- Features List --}}
         <div class="flex flex-col gap-12 md:gap-16 lg:gap-20">
@@ -85,7 +85,7 @@ new class extends Component {
                     {{-- Image Block (fixed size) --}}
                     <div class="w-full md:w-80 lg:w-[480px] flex-shrink-0">
                         <div
-                            class="w-full h-56 md:h-72 lg:h-80 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white group relative">
+                            class="w-full h-56 md:h-72 lg:h-80 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-secondary group relative">
                             <img src="{{ asset($feature['img']) }}" alt="{{ $feature['title'] }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             {{-- Decorative overlay --}}

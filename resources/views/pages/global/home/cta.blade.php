@@ -21,23 +21,20 @@ new class extends Component {
     </div>
 
     <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-            {{ __('landing.cta.heading') }}<br>
-            <span class="text-tertiary">{{ __('landing.cta.subheading') }}</span>
+        <h2
+            class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
+            {{ __('home.cta.heading') }}<br>
+            <span class="text-tertiary">{{ __('home.cta.subheading') }}</span>
         </h2>
 
         <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-            {{ __('landing.cta.desc') }}
+            {{ __('home.cta.desc') }}
         </p>
 
         <div class="flex flex-col sm:flex-row justify-center gap-4">
             <flux:button variant="primary" :href="route('register')"
                 class="bg-tertiary text-primary hover:bg-tertiary-400 border-none px-10 py-4 text-xl font-bold shadow-xl rounded-full transition-all duration-300 hover:scale-105 active:scale-95 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('landing.cta.register_btn') }}
-            </flux:button>
-            <flux:button variant="outline" href="#programs"
-                class="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white px-10 py-4 text-xl font-bold rounded-full transition-all duration-300 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('landing.cta.browse_btn') }}
+                {{ __('home.cta.register_btn') }}
             </flux:button>
         </div>
     </div>

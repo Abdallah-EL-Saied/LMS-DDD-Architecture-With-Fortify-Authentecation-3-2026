@@ -10,43 +10,43 @@ new class extends Component {
         $this->courses = [
             [
                 'icon' => 'fa-solid fa-quran',
-                'title' => __('landing.courses.c1_title'),
-                'desc' => __('landing.courses.c1_desc'),
+                'title' => __('courses.c1_title'),
+                'desc' => __('courses.c1_desc'),
                 'color' => 'primary',
                 'bg' => 'bg-primary/10',
             ],
             [
                 'icon' => 'fa-solid fa-book-quran',
-                'title' => __('landing.courses.c2_title'),
-                'desc' => __('landing.courses.c2_desc'),
+                'title' => __('courses.c2_title'),
+                'desc' => __('courses.c2_desc'),
                 'color' => 'tertiary',
                 'bg' => 'bg-tertiary/20',
             ],
             [
                 'icon' => 'fa-solid fa-language',
-                'title' => __('landing.courses.c3_title'),
-                'desc' => __('landing.courses.c3_desc'),
+                'title' => __('courses.c3_title'),
+                'desc' => __('courses.c3_desc'),
                 'color' => 'primary',
                 'bg' => 'bg-primary/10',
             ],
             [
                 'icon' => 'fa-solid fa-mosque',
-                'title' => __('landing.courses.c4_title'),
-                'desc' => __('landing.courses.c4_desc'),
+                'title' => __('courses.c4_title'),
+                'desc' => __('courses.c4_desc'),
                 'color' => 'tertiary',
                 'bg' => 'bg-tertiary/20',
             ],
             [
                 'icon' => 'fa-solid fa-scroll',
-                'title' => __('landing.courses.c5_title'),
-                'desc' => __('landing.courses.c5_desc'),
+                'title' => __('courses.c5_title'),
+                'desc' => __('courses.c5_desc'),
                 'color' => 'primary',
                 'bg' => 'bg-primary/10',
             ],
             [
                 'icon' => 'fa-solid fa-child',
-                'title' => __('landing.courses.c6_title'),
-                'desc' => __('landing.courses.c6_desc'),
+                'title' => __('courses.c6_title'),
+                'desc' => __('courses.c6_desc'),
                 'color' => 'tertiary',
                 'bg' => 'bg-tertiary/20',
             ],
@@ -58,8 +58,7 @@ new class extends Component {
 <div class="py-24 bg-white" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <x-section-heading :title="__('landing.courses.heading')" :description="__('landing.courses.subheading')"
-            show-line />
+        <x-section-heading :title="__('courses.heading')" :description="__('courses.subheading')" show-line />
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach ($courses as $course)
@@ -70,7 +69,7 @@ new class extends Component {
         <div class="text-center mt-12">
             <flux:button variant="primary" href="/courses"
                 class="bg-primary text-white hover:bg-primary-400 border-none px-10 py-4 text-lg font-bold rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('landing.courses.view_all') }}
+                {{ __('courses.view_all') }}
             </flux:button>
         </div>
     </div>

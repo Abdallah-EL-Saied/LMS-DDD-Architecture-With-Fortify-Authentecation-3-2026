@@ -10,8 +10,7 @@ new class extends Component {
 <div class="py-24 bg-white" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <x-section-heading :title="__('landing.how_it_works.heading')"
-            :description="__('landing.how_it_works.subheading')" />
+        <x-section-heading :title="__('home.how_it_works.heading')" :description="__('home.how_it_works.subheading')" />
 
         <div class="relative max-w-5xl mx-auto">
             <!-- Connecting Line (Desktop) -->
@@ -25,8 +24,8 @@ new class extends Component {
                         class="w-20 h-20 rounded-full bg-white border-4 border-tertiary shadow-lg flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
                         <span class="text-3xl font-bold text-primary">1</span>
                     </div>
-                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('landing.how_it_works.s1_title') }}</h3>
-                    <p class="text-zinc-600 text-sm">{{ __('landing.how_it_works.s1_desc') }}</p>
+                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('home.how_it_works.s1_title') }}</h3>
+                    <p class="text-zinc-600 text-sm">{{ __('home.how_it_works.s1_desc') }}</p>
                 </div>
 
                 <!-- Step 2 -->
@@ -35,8 +34,8 @@ new class extends Component {
                         class="w-20 h-20 rounded-full bg-primary border-4 border-primary text-white shadow-lg flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
                         <span class="text-3xl font-bold">2</span>
                     </div>
-                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('landing.how_it_works.s2_title') }}</h3>
-                    <p class="text-zinc-600 text-sm">{{ __('landing.how_it_works.s2_desc') }}</p>
+                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('home.how_it_works.s2_title') }}</h3>
+                    <p class="text-zinc-600 text-sm">{{ __('home.how_it_works.s2_desc') }}</p>
                 </div>
 
                 <!-- Step 3 -->
@@ -45,8 +44,8 @@ new class extends Component {
                         class="w-20 h-20 rounded-full bg-white border-4 border-tertiary shadow-lg flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
                         <span class="text-3xl font-bold text-primary">3</span>
                     </div>
-                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('landing.how_it_works.s3_title') }}</h3>
-                    <p class="text-zinc-600 text-sm">{{ __('landing.how_it_works.s3_desc') }}</p>
+                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('home.how_it_works.s3_title') }}</h3>
+                    <p class="text-zinc-600 text-sm">{{ __('home.how_it_works.s3_desc') }}</p>
                 </div>
 
                 <!-- Step 4 -->
@@ -55,8 +54,8 @@ new class extends Component {
                         class="w-20 h-20 rounded-full bg-primary border-4 border-primary text-white shadow-lg flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
                         <span class="text-3xl font-bold">4</span>
                     </div>
-                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('landing.how_it_works.s4_title') }}</h3>
-                    <p class="text-zinc-600 text-sm">{{ __('landing.how_it_works.s4_desc') }}</p>
+                    <h3 class="text-xl font-bold text-zinc-900 mb-2">{{ __('home.how_it_works.s4_title') }}</h3>
+                    <p class="text-zinc-600 text-sm">{{ __('home.how_it_works.s4_desc') }}</p>
                 </div>
 
             </div>
