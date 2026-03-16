@@ -4,16 +4,16 @@ use Livewire\Component;
 
 new class extends Component {
     public array $heroPhotos = [
-        ['id' => 1, 'src' => 'assets/auth.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.islamic_sciences', 'alt' => 'landing.hero.subjects.islamic_sciences'],
-        ['id' => 2, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.quran', 'alt' => 'landing.hero.subjects.quran'],
-        ['id' => 3, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.arabic', 'alt' => 'landing.hero.subjects.arabic'],
-        ['id' => 4, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.hadith', 'alt' => 'landing.hero.subjects.hadith'],
-        ['id' => 5, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.history', 'alt' => 'landing.hero.subjects.history'],
-        ['id' => 6, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.nouranya', 'alt' => 'landing.hero.subjects.nouranya'],
-        ['id' => 7, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.ijazah', 'alt' => 'landing.hero.subjects.ijazah'],
-        ['id' => 8, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.character', 'alt' => 'landing.hero.subjects.character'],
-        ['id' => 9, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'landing.hero.subjects.fiqh', 'alt' => 'landing.hero.subjects.fiqh'],
-        ['id' => 10, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'landing.hero.subjects.nour_bayan', 'alt' => 'landing.hero.subjects.nour_bayan'],
+        ['id' => 1, 'src' => 'assets/auth.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'home.hero.subjects.islamic_sciences', 'alt' => 'home.hero.subjects.islamic_sciences'],
+        ['id' => 2, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'home.hero.subjects.quran', 'alt' => 'home.hero.subjects.quran'],
+        ['id' => 3, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'home.hero.subjects.arabic', 'alt' => 'home.hero.subjects.arabic'],
+        ['id' => 4, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'home.hero.subjects.hadith', 'alt' => 'home.hero.subjects.hadith'],
+        ['id' => 5, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'home.hero.subjects.history', 'alt' => 'home.hero.subjects.history'],
+        ['id' => 6, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'home.hero.subjects.nouranya', 'alt' => 'home.hero.subjects.nouranya'],
+        ['id' => 7, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'home.hero.subjects.ijazah', 'alt' => 'home.hero.subjects.ijazah'],
+        ['id' => 8, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'home.hero.subjects.character', 'alt' => 'home.hero.subjects.character'],
+        ['id' => 9, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[50%_50%_0%_0%/50%_50%_0%_0%]', 'title' => 'home.hero.subjects.fiqh', 'alt' => 'home.hero.subjects.fiqh'],
+        ['id' => 10, 'src' => 'assets/hero.webp', 'shape' => 'rounded-[0%_0%_100%_100%/0%_0%_100%_100%]', 'title' => 'home.hero.subjects.nour_bayan', 'alt' => 'home.hero.subjects.nour_bayan'],
     ];
 };
 ?>
@@ -39,23 +39,23 @@ new class extends Component {
 
             <p
                 class="text-secondary text-sm md:text-xl font-medium tracking-wide {{ app()->getLocale() === 'ar' ? 'cairo-font' : 'uppercase' }}">
-                {{ __('landing.hero.subtitle') }}
+                {{ __('home.hero.subtitle') }}
             </p>
 
             <h1
                 class="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight break-normal {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                {{ __('landing.hero.title') }}
+                {{ __('home.hero.title') }}
             </h1>
 
             <p class="text-white/80 text-sm md:text-lg max-w-2xl leading-relaxed">
-                {{ __('landing.hero.description') }}
+                {{ __('home.hero.description') }}
             </p>
 
             <!-- Action Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mt-4">
                 <flux:button variant="primary"
                     class="bg-secondary text-primary hover:bg-secondary/90 border-none w-56 px-12 py-6 text-xl font-bold shadow-2xl rounded-full transition-all duration-300 hover:scale-105 active:scale-95 {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                    {{ __('landing.hero.button') }}
+                    {{ __('home.hero.button') }}
                 </flux:button>
             </div>
         </div>

@@ -9,41 +9,41 @@ new class extends Component {
     {
         $this->plans = [
             [
-                'name' => __('landing.pricing.p1_name'),
-                'price' => __('landing.pricing.p1_price'),
-                'period' => __('landing.pricing.period'),
+                'name' => __('pricing.p1_name'),
+                'price' => __('pricing.p1_monthly'),
+                'period' => __('pricing.monthly'),
                 'features' => [
-                    __('landing.pricing.p1_f1'),
-                    __('landing.pricing.p1_f2'),
-                    __('landing.pricing.p1_f3'),
-                    __('landing.pricing.p1_f4'),
+                    __('pricing.p1_f1'),
+                    __('pricing.p1_f2'),
+                    __('pricing.p1_f3'),
+                    __('pricing.p1_f4'),
                 ],
                 'popular' => false,
             ],
             [
-                'name' => __('landing.pricing.p2_name'),
-                'price' => __('landing.pricing.p2_price'),
-                'period' => __('landing.pricing.period'),
+                'name' => __('pricing.p2_name'),
+                'price' => __('pricing.p2_monthly'),
+                'period' => __('pricing.monthly'),
                 'features' => [
-                    __('landing.pricing.p2_f1'),
-                    __('landing.pricing.p2_f2'),
-                    __('landing.pricing.p2_f3'),
-                    __('landing.pricing.p2_f4'),
-                    __('landing.pricing.p2_f5'),
+                    __('pricing.p2_f1'),
+                    __('pricing.p2_f2'),
+                    __('pricing.p2_f3'),
+                    __('pricing.p2_f4'),
+                    __('pricing.p2_f5'),
                 ],
                 'popular' => true,
             ],
             [
-                'name' => __('landing.pricing.p3_name'),
-                'price' => __('landing.pricing.p3_price'),
-                'period' => __('landing.pricing.period'),
+                'name' => __('pricing.p3_name'),
+                'price' => __('pricing.p3_monthly'),
+                'period' => __('pricing.monthly'),
                 'features' => [
-                    __('landing.pricing.p3_f1'),
-                    __('landing.pricing.p3_f2'),
-                    __('landing.pricing.p3_f3'),
-                    __('landing.pricing.p3_f4'),
-                    __('landing.pricing.p3_f5'),
-                    __('landing.pricing.p3_f6'),
+                    __('pricing.p3_f1'),
+                    __('pricing.p3_f2'),
+                    __('pricing.p3_f3'),
+                    __('pricing.p3_f4'),
+                    __('pricing.p3_f5'),
+                    __('pricing.p3_f6'),
                 ],
                 'popular' => false,
             ],
@@ -55,8 +55,7 @@ new class extends Component {
 <div class="py-24 bg-white" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <x-section-heading :title="__('landing.pricing.heading')" :description="__('landing.pricing.subheading')"
-            show-line />
+        <x-section-heading :title="__('pricing.heading')" :description="__('pricing.subheading')" show-line />
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
             @foreach ($plans as $plan)
@@ -66,7 +65,7 @@ new class extends Component {
                     @if ($plan['popular'])
                         <div
                             class="absolute -top-5 left-1/2 -translate-x-1/2 bg-tertiary text-primary text-xs font-black px-6 py-2 rounded-full uppercase tracking-wider {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                            {{ __('landing.pricing.popular') }}
+                            {{ __('pricing.popular') }}
                         </div>
                     @endif
 
@@ -95,7 +94,7 @@ new class extends Component {
 
                     <flux:button variant="{{ $plan['popular'] ? 'primary' : 'subtle' }}"
                         class="w-full py-4 rounded-2xl font-black transition-all active:scale-95 text-lg {{ $plan['popular'] ? 'bg-primary text-white hover:bg-primary-400' : 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200' }} {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
-                        {{ __('landing.pricing.subscribe') }}
+                        {{ __('pricing.subscribe') }}
                     </flux:button>
                 </div>
             @endforeach

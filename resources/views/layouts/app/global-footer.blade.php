@@ -1,12 +1,12 @@
-<footer class="bg-primary-500 pt-16 pb-8 border-t-4 border-tertiary"
+<footer class="bg-primary-500 pt-16 pb-8"
     dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
             <!-- Brand & About -->
             <div class="col-span-1 lg:col-span-1">
-                <div class="flex items-center gap-3 mb-6">
-                    <x-app-logo color="bg-tertiary" size="size-12" imgUrl="/FZLogo.png" />
+                <div class="flex items-center gap-3 mb-4">
+                    <x-app-logo color="bg-secondary" size="size-14" imgUrl="/FZLogo.png" />
                     <span
                         class="text-2xl font-bold text-white {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">{{ __('global.footer.brand_name') }}</span>
                 </div>

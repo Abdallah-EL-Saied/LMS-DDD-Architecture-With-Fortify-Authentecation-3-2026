@@ -12,10 +12,6 @@ new #[Layout('layouts.welcome')] class extends Component {
 <!-- Start Page -->
 <div class="bg-surface">
     <style>
-        .section-height {
-            min-height: calc(100vh - 73px);
-        }
-
         .photo-overlay {
             background: rgba(26, 68, 65, 0.9);
             opacity: 0;
@@ -34,7 +30,7 @@ new #[Layout('layouts.welcome')] class extends Component {
     <livewire:pages::global.home.courses />
     <livewire:pages::global.home.gallery />
     <livewire:pages::global.home.testimonials />
-    <livewire:pages::global.home.how-it-works />
-    <livewire:pages::global.home.pricing />
+    {{-- <livewire:pages::global.home.how-it-works /> --}}
+    {{-- <livewire:pages::global.home.pricing /> --}}
     <livewire:pages::global.home.cta />
 </div>
