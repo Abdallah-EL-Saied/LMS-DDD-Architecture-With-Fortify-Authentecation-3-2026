@@ -9,40 +9,47 @@
     <flux:sidebar sticky collapsible class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
         <flux:sidebar.header>
             <x-app-logo :name="'FZC - Staff'" :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
-            
+
             <flux:spacer />
 
             <flux:sidebar.collapse />
         </flux:sidebar.header>
 
-        <flux:sidebar.search placeholder="Search..." />
+        <flux:sidebar.search placeholder="{{ __('global.header.search_placeholder') }}" />
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+            <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
+                wire:navigate>
                 {{ __('Dashboard') }}
             </flux:sidebar.item>
-            <flux:sidebar.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>
+            <flux:sidebar.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')"
+                wire:navigate>
                 {{ __('Users') }}
             </flux:sidebar.item>
-            <flux:sidebar.item icon="book-open" href="courses" wire:navigate>Our Courses</flux:sidebar.item>
-            <flux:sidebar.item icon="envelope" href="contact" wire:navigate>Contact Us</flux:sidebar.item>
-            
-            <flux:sidebar.group expandable heading="Favorites" class="grid">
-                <flux:sidebar.item href="#">Marketing site</flux:sidebar.item>
-                <flux:sidebar.item href="#">Android app</flux:sidebar.item>
-                <flux:sidebar.item href="#">Brand guidelines</flux:sidebar.item>
+            <flux:sidebar.item icon="book-open" href="courses" wire:navigate>{{ __('global.sidebar.courses') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="envelope" href="contact" wire:navigate>{{ __('global.sidebar.contact') }}
+            </flux:sidebar.item>
+
+            <flux:sidebar.group expandable heading="{{ __('global.sidebar.favorites') }}" class="grid">
+                <flux:sidebar.item href="#">{{ __('global.sidebar.fav_marketing') }}</flux:sidebar.item>
+                <flux:sidebar.item href="#">{{ __('global.sidebar.fav_android') }}</flux:sidebar.item>
+                <flux:sidebar.item href="#">{{ __('global.sidebar.fav_brand') }}</flux:sidebar.item>
             </flux:sidebar.group>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="cog-6-tooth" :href="route('profile.edit')" wire:navigate>{{ __('Settings') }}</flux:sidebar.item>
-            <flux:sidebar.item icon="information-circle" href="#">{{ __('Help') }}</flux:sidebar.item>
+            <flux:sidebar.item icon="cog-6-tooth" :href="route('profile.edit')" wire:navigate>
+                {{ __('global.sidebar.settings') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="information-circle" href="#">{{ __('global.sidebar.help') }}</flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:dropdown position="top" align="start" class="max-lg:hidden">
-            <flux:sidebar.profile :avatar="auth()->user()->avatar ?? 'https://fluxui.dev/img/demo/user.png'" :name="auth()->user()->name" />
+            <flux:sidebar.profile :avatar="auth()->user()->avatar ?? 'https://fluxui.dev/img/demo/user.png'"
+                :name="auth()->user()->name" />
 
             <flux:menu>
                 <flux:menu.radio.group>
@@ -70,8 +77,9 @@
 
                 <form method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf
-                    <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full cursor-pointer">
-                        {{ __('Log out') }}
+                    <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle"
+                        class="w-full cursor-pointer">
+                        {{ __('global.sidebar.logout') }}
                     </flux:menu.item>
                 </form>
             </flux:menu>
@@ -91,8 +99,9 @@
                     <flux:menu.separator />
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
-                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full cursor-pointer">
-                            {{ __('Log out') }}
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle"
+                            class="w-full cursor-pointer">
+                            {{ __('global.sidebar.logout') }}
                         </flux:menu.item>
                     </form>
                 </flux:menu>
@@ -100,10 +109,10 @@
         </flux:navbar>
 
         <flux:navbar scrollable>
-            <flux:navbar.item href="#" current>Dashboard</flux:navbar.item>
-            <flux:navbar.item badge="32" href="#">Orders</flux:navbar.item>
-            <flux:navbar.item href="#">Catalog</flux:navbar.item>
-            <flux:navbar.item href="#">Configuration</flux:navbar.item>
+            <flux:navbar.item href="#" current>{{ __('global.sidebar.dashboard') }}</flux:navbar.item>
+            <flux:navbar.item badge="32" href="#">{{ __('global.sidebar.orders') }}</flux:navbar.item>
+            <flux:navbar.item href="#">{{ __('global.sidebar.catalog') }}</flux:navbar.item>
+            <flux:navbar.item href="#">{{ __('global.sidebar.configuration') }}</flux:navbar.item>
         </flux:navbar>
     </flux:header>
 

@@ -9,7 +9,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-heading: 'Cairo', 'Roboto', sans-serif;
+    --font-sans: 'Roboto', 'Cairo', ui-sans-serif, system-ui, sans-serif;
 
     --color-zinc-50: #fafafa;
     --color-zinc-100: #f5f5f5;
@@ -23,35 +24,26 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    /* --- Brand Color System --- */
-
-    /* Primary: Royal Teal (#255E5A) - اللون الأساسي للهوية */
-    /* يُستخدم في: الهيدر، الأزرار الأساسية، العناوين الكبيرة، والمساحات التي تمثل البراند */
-    --color-primary-50: #F2F7F6;
-    --color-primary-100: #E9F2F1;
-    --color-primary-200: #B3CDC1;
-    --color-primary-300: #255E5A; /* Base Brand Teal */
-    --color-primary-400: #1D4B48;
-    --color-primary-500: #143331;
+    --color-primary-50: #EEF7F6;
+    --color-primary-100: #D4EBE9;
+    --color-primary-200: #AED7D4;
+    --color-primary-300: #036A62;
+    --color-primary-400: #02504A;
+    --color-primary-500: #013D38;
 
     --color-primary: var(--color-primary-300);
     --color-primary-hover: var(--color-primary-400);
 
-    /* Tertiary/Accent: Vibrant Gold (#f4c025) - لون التميز والتبايُن */
-    /* يُستخدم في: اللوجو (SVG)، الأزرار الثانوية، الروابط النشطة (Active)، والتنبيهات المهمة */
-    --color-tertiary-100: #FEF9E6;
-    --color-tertiary-200: #FCE68E;
-    --color-tertiary-300: #f4c025; /* Base Brand Gold */
-    --color-tertiary-400: #C39A1D;
-    --color-tertiary-500: #937416;
+    --color-secondary-100: #FEF9E6;
+    --color-secondary-200: #FCE68E;
+    --color-secondary-300: #f4c025;
+    --color-secondary-400: #C39A1D;
+    --color-secondary-500: #937416;
 
-    --color-tertiary: var(--color-tertiary-300);
-    --color-tertiary-hover: var(--color-tertiary-400);
+    --color-secondary: var(--color-secondary-300);
+    --color-secondary-hover: var(--color-secondary-400);
 
-    /* Neutrals & Surfaces - الألوان المحايدة والخلفيات */
-    /* Surface: يُستخدم كخلفية أساسية للموقع لإعطاء مظهر "بريميوم" بدلاً من الأبيض الصريح */
     --color-surface: #FDFBF7;
-    /* Creamy White */
     --color-surface-dark: #121212;
 
     --color-accent: var(--color-primary-300);
@@ -61,13 +53,29 @@
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-tertiary-300);
-        --color-accent-content: var(--color-tertiary-300);
+        --color-accent: var(--color-secondary-300);
+        --color-accent-content: var(--color-secondary-300);
         --color-accent-foreground: var(--color-zinc-900);
     }
 }
 
 @layer base {
+    :root:lang(ar) {
+        font-family: 'Cairo', sans-serif;
+    }
+
+    :root:lang(en) {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-heading);
+    }
 
     *,
     ::after,
@@ -92,14 +100,11 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
-
 /* Body & Surface */
 body {
     background-color: var(--color-surface);
     color: var(--color-zinc-900);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
@@ -107,7 +112,37 @@ body {
     color: var(--color-zinc-50);
 }
 
-/* Fonts */
-.cairo-font { font-family: 'Cairo', sans-serif; }
-.roboto-font { font-family: 'Roboto', sans-serif; }
+/* Helper Utilities */
+.cairo-font {
+    font-family: 'Cairo', sans-serif;
+}
 
+.roboto-font {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Global Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-primary-300);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-secondary-300);
+    border: 2px solid var(--color-primary-300);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary-200);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary-300) var(--color-primary-300);
+}

@@ -23,7 +23,7 @@
             <a href="{{ route('home') }}"
                 class="absolute left-1/2 -translate-x-1/2 top-10 z-20 flex items-center text-lg font-medium"
                 wire:navigate>
-                <x-app-logo color="bg-tertiary" imgUrl="/FZLogo.png" size="size-30" />
+                <x-app-logo color="bg-secondary" imgUrl="/FZLogo.png" size="size-30" />
             </a>
             <!-- 
             @php
