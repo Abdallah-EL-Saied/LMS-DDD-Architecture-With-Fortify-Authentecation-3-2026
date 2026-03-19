@@ -191,11 +191,9 @@
                         <i class="fa-solid fa-globe"></i>
                     </flux:button>
                     <flux:navmenu>
-                        <flux:navmenu.item :href="route('lang.switch', 'ar')" x-data
-                            @click="localStorage.setItem('locale', 'ar')"><span class="cairo-font">العربية</span>
+                        <flux:navmenu.item :href="route('lang.switch', 'ar')"><span class="cairo-font">العربية</span>
                         </flux:navmenu.item>
-                        <flux:navmenu.item :href="route('lang.switch', 'en')" x-data
-                            @click="localStorage.setItem('locale', 'en')">English</flux:navmenu.item>
+                        <flux:navmenu.item :href="route('lang.switch', 'en')">English</flux:navmenu.item>
                     </flux:navmenu>
                 </flux:dropdown>
 
