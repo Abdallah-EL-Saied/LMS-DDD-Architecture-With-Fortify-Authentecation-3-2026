@@ -15,37 +15,58 @@
             <flux:sidebar.collapse />
         </flux:sidebar.header>
 
-        <flux:sidebar.search placeholder="{{ __('global.header.search_placeholder') }}" />
+        <!-- <flux:sidebar.search placeholder="{{ __('global.header.search_placeholder') }}" /> -->
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
-                wire:navigate>
-                {{ __('Dashboard') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')"
-                wire:navigate>
-                {{ __('Users') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item icon="book-open" href="courses" wire:navigate>{{ __('global.sidebar.courses') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item icon="envelope" href="contact" wire:navigate>{{ __('global.sidebar.contact') }}
+            <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                {{ __('global.sidebar.dashboard') }}
             </flux:sidebar.item>
 
-            <flux:sidebar.group expandable heading="{{ __('global.sidebar.favorites') }}" class="grid">
-                <flux:sidebar.item href="#">{{ __('global.sidebar.fav_marketing') }}</flux:sidebar.item>
-                <flux:sidebar.item href="#">{{ __('global.sidebar.fav_android') }}</flux:sidebar.item>
-                <flux:sidebar.item href="#">{{ __('global.sidebar.fav_brand') }}</flux:sidebar.item>
-            </flux:sidebar.group>
+            {{-- Admin Sidebar --}}
+            @hasrole('admin')
+                <flux:sidebar.group expandable icon="users" heading="{{ __('global.sidebar.users') }}">
+                    <flux:sidebar.item icon="user" href="#" wire:navigate>{{ __('global.sidebar.students') }}</flux:sidebar.item>
+                    <flux:sidebar.item icon="user-group" href="#" wire:navigate>{{ __('global.sidebar.teachers') }}</flux:sidebar.item>
+                </flux:sidebar.group>
+                <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.circles') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.schedule') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="document-text" href="#" wire:navigate>{{ __('global.sidebar.exams') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="check-badge" href="#" wire:navigate>{{ __('global.sidebar.attendance') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="banknotes" href="#" wire:navigate>{{ __('global.sidebar.finance') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="presentation-chart-bar" href="#" wire:navigate>{{ __('global.sidebar.reports') }}</flux:sidebar.item>
+            @endhasrole
+
+            {{-- Teacher Sidebar --}}
+            @hasrole('teacher')
+                <flux:sidebar.item icon="users" href="#" wire:navigate>{{ __('global.sidebar.my_students') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.my_circles') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.my_schedule') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="clipboard-document-list" href="#" wire:navigate>{{ __('global.sidebar.assignments') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="academic-cap" href="#" wire:navigate>{{ __('global.sidebar.grades') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="folder" href="#" wire:navigate>{{ __('global.sidebar.resources') }}</flux:sidebar.item>
+                @endhasrole
+                
+                {{-- Student Sidebar --}}
+                @hasrole('student')
+                <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.my_circles') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.my_schedule') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="clipboard-document-list" href="#" wire:navigate>{{ __('global.sidebar.assignments') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="academic-cap" href="#" wire:navigate>{{ __('global.sidebar.my_grades') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="chart-bar" href="#" wire:navigate>{{ __('global.sidebar.progress') }}</flux:sidebar.item>
+                <flux:sidebar.item icon="trophy" href="#" wire:navigate>{{ __('global.sidebar.certificates') }}</flux:sidebar.item>
+                @endhasrole
+
+                <flux:sidebar.item icon="envelope" href="#" wire:navigate>{{ __('global.sidebar.messages') }}</flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />
 
-        <flux:sidebar.nav>
+        <!-- <flux:sidebar.nav>
             <flux:sidebar.item icon="cog-6-tooth" :href="route('profile.edit')" wire:navigate>
                 {{ __('global.sidebar.settings') }}
             </flux:sidebar.item>
             <flux:sidebar.item icon="information-circle" href="#">{{ __('global.sidebar.help') }}</flux:sidebar.item>
-        </flux:sidebar.nav>
+        </flux:sidebar.nav> -->
 
         <flux:dropdown position="top" align="start" class="max-lg:hidden">
             <flux:sidebar.profile :avatar="auth()->user()->avatar ?? 'https://fluxui.dev/img/demo/user.png'"
@@ -86,17 +107,24 @@
         </flux:dropdown>
     </flux:sidebar>
 
-    <flux:header class="block! bg-white lg:bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
-        <flux:navbar class="lg:hidden w-full">
+    <flux:header sticky class="block! bg-white lg:bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
+        <flux:navbar class="w-full">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+
             <flux:spacer />
+
+            <flux:navbar.item icon="bell" badge="3" href="#" label="{{ __('global.sidebar.messages') }}" />
+
             <flux:dropdown position="top" align="start">
                 <flux:profile :avatar="auth()->user()->avatar ?? 'https://fluxui.dev/img/demo/user.png'" />
+
                 <flux:menu>
                     <flux:menu.radio.group>
                         <flux:menu.radio checked>{{ auth()->user()->name }}</flux:menu.radio>
                     </flux:menu.radio.group>
+
                     <flux:menu.separator />
+
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle"
@@ -108,12 +136,12 @@
             </flux:dropdown>
         </flux:navbar>
 
-        <flux:navbar scrollable>
+        <!-- <flux:navbar scrollable>
             <flux:navbar.item href="#" current>{{ __('global.sidebar.dashboard') }}</flux:navbar.item>
             <flux:navbar.item badge="32" href="#">{{ __('global.sidebar.orders') }}</flux:navbar.item>
             <flux:navbar.item href="#">{{ __('global.sidebar.catalog') }}</flux:navbar.item>
             <flux:navbar.item href="#">{{ __('global.sidebar.configuration') }}</flux:navbar.item>
-        </flux:navbar>
+        </flux:navbar> -->
     </flux:header>
 
     <flux:main>
