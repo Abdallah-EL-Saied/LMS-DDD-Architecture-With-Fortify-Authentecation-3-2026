@@ -82,7 +82,7 @@ new #[Layout('layouts.welcome')] class extends Component {
 
         <!-- Goals Section -->
         <div class="mt-32">
-            <x-section-heading :title="__('about.goals_heading')" :showLine="true" />
+            <x-section-heading :title="__('about.goals_heading')" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 @foreach ($this->goals as $goal)
