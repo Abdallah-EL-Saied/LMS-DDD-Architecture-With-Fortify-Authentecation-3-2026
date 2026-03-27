@@ -84,9 +84,9 @@ new class extends Component {
             <div class="lg:col-span-4 space-y-6 md:space-y-8">
                 <!-- Overall Rating Badge (Visible on all screens) -->
                 <div
-                    class="inline-flex items-center gap-3 bg-white border border-zinc-100 px-4 py-2.5 rounded-2xl shadow-sm">
+                    class="inline-flex items-center gap-3 bg-primary px-4 py-2.5 rounded-2xl">
                     <div class="flex items-center gap-1.5">
-                        <span class="font-bold text-zinc-900 text-xl">4.9</span>
+                        <span class="font-bold text-zinc-100 text-xl">4.9</span>
                         <div class="flex text-secondary gap-0.5">
                             @for($i = 0; $i < 5; $i++)
                             <flux:icon icon="star" variant="solid" class="size-3.5" /> @endfor
@@ -94,7 +94,7 @@ new class extends Component {
                     </div>
                     <div class="h-6 w-px bg-zinc-200"></div>
                     <span
-                        class="text-xs text-zinc-500 font-medium italic">{{ __(':count reviews', ['count' => 1250]) }}</span>
+                        class="text-xs text-zinc-100 font-medium italic">{{ __(':count reviews', ['count' => 1250]) }}</span>
                 </div>
 
                 <div class="space-y-4 md:space-y-6">
@@ -105,7 +105,7 @@ new class extends Component {
                         </svg>
                     </div>
                     <h3
-                        class="text-xl md:text-3xl font-bold text-zinc-900 leading-snug {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
+                        class="text-xl md:text-3xl font-bold text-primary leading-snug {{ app()->getLocale() === 'ar' ? 'cairo-font' : '' }}">
                         {{ __('home.testimonials.side_text') }}
                     </h3>
 
@@ -141,9 +141,9 @@ new class extends Component {
                     class="flex gap-4 md:gap-6 overflow-x-auto pb-6 md:pb-8 snap-x snap-mandatory no-scrollbar scroll-smooth">
                     @foreach($reviews as $review)
                         <div
-                            class="flex-none w-[280px] sm:w-[350px] bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] border border-zinc-50 snap-start flex flex-col">
+                            class="flex-none w-[280px] sm:w-[350px] bg-primary p-6 md:p-8 rounded-2xl md:rounded-3xl border-4 border-secondary snap-start flex flex-col">
 
-                            <p class="text-zinc-600 leading-relaxed mb-8 flex-1 text-sm sm:text-base">
+                            <p class="text-white leading-relaxed mb-8 flex-1 text-sm sm:text-base">
                                 {{ $review['text'] }}
                             </p>
 
@@ -158,11 +158,11 @@ new class extends Component {
                                 <!-- User Info -->
                                 <div class="flex items-center gap-4">
                                     <div
-                                        class="size-10 rounded-full bg-zinc-100 flex items-center justify-center text-primary font-bold text-xs border border-zinc-200 shadow-sm">
+                                        class="size-10 rounded-full bg-white flex items-center justify-center text-primary font-bold text-xs border border-zinc-200 shadow-sm">
                                         {{ substr($review['name'], 0, 1) }}
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <div class="font-bold text-zinc-900 truncate text-sm">{{ $review['name'] }}</div>
+                                        <div class="font-bold text-white truncate text-sm">{{ $review['name'] }}</div>
                                         <div class="text-[10px] text-zinc-400 mt-0.5 uppercase tracking-wider">
                                             {{ $review['role'] }}
                                         </div>

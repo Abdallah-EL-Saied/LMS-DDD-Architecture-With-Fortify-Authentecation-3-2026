@@ -137,7 +137,7 @@ new #[Layout('layouts.welcome')] class extends Component {
                             <div class="space-y-1.5">
                                 <label class="text-xs font-bold text-zinc-700 mx-2">{{ __('contact.name') }}</label>
                                 <input type="text" wire:model="name"
-                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm"
+                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm text-zinc-900"
                                     placeholder="John Doe">
                                 @error('name') <span
                                     class="text-[10px] text-red-500 font-bold mx-2 italic">{{ $message }}</span>
@@ -147,7 +147,7 @@ new #[Layout('layouts.welcome')] class extends Component {
                             <div class="space-y-1.5">
                                 <label class="text-xs font-bold text-zinc-700 mx-2">{{ __('contact.email') }}</label>
                                 <input type="email" wire:model="email"
-                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm"
+                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm text-zinc-900"
                                     placeholder="john@example.com">
                                 @error('email') <span
                                     class="text-[10px] text-red-500 font-bold mx-2 italic">{{ $message }}</span>
@@ -157,7 +157,7 @@ new #[Layout('layouts.welcome')] class extends Component {
                             <div class="md:col-span-2 space-y-1.5">
                                 <label class="text-xs font-bold text-zinc-700 mx-2">{{ __('contact.subject') }}</label>
                                 <input type="text" wire:model="subject"
-                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm"
+                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm text-zinc-900"
                                     placeholder="How can we help?">
                                 @error('subject') <span
                                     class="text-[10px] text-red-500 font-bold mx-2 italic">{{ $message }}</span>
@@ -167,7 +167,7 @@ new #[Layout('layouts.welcome')] class extends Component {
                             <div class="md:col-span-2 space-y-1.5">
                                 <label class="text-xs font-bold text-zinc-700 mx-2">{{ __('contact.message') }}</label>
                                 <textarea wire:model="message" rows="4"
-                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none resize-none text-sm"
+                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border-zinc-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none resize-none text-sm text-zinc-900"
                                     placeholder="Write your message here..."></textarea>
                                 @error('message') <span
                                     class="text-[10px] text-red-500 font-bold mx-2 italic">{{ $message }}</span>
