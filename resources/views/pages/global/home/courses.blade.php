@@ -58,7 +58,7 @@ new class extends Component {
 <div class="py-24 bg-white" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <x-section-heading :title="__('courses.heading')" :description="__('courses.subheading')" show-line />
+        <x-section-heading :title="__('courses.heading')" />
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach ($courses as $course)

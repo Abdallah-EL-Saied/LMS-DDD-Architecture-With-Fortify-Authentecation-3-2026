@@ -17,7 +17,7 @@ new class extends Component {
             ],
             [
                 'num' => '02',
-                'icon' => 'fa-solid fa-tag',
+                'icon' => 'fa-solid fa-dollar',
                 'title' => __('home.features.f2_title'),
                 'desc' => __('home.features.f2_desc'),
                 'img' => 'assets/hero.webp',
@@ -31,7 +31,7 @@ new class extends Component {
             ],
             [
                 'num' => '04',
-                'icon' => 'fa-solid fa-people-arrows',
+                'icon' => 'fa-solid fa-chalkboard-user',
                 'title' => __('home.features.f4_title'),
                 'desc' => __('home.features.f4_desc'),
                 'img' => 'assets/hero.webp',
