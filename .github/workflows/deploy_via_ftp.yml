@@ -20,7 +20,7 @@ jobs:
           php-version: 8.4
 
       - name: Install Composer Dependencies
-        run: composer install --no-dev --optimize-autoloader
+        run: composer install --optimize-autoloader
 
       - name: Setup Node
         uses: actions/setup-node@v4
