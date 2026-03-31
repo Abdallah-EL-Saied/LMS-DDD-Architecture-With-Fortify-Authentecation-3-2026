@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
 
 <head>
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-zinc-800 antialiased font-sans">
-    <flux:sidebar sticky collapsible class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
+<body class="min-h-screen bg-zinc-50 dark:bg-zinc-950 antialiased font-sans">
+    <flux:sidebar sticky collapsible class="bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800">
         <flux:sidebar.header>
-            <x-app-logo :name="'FZC - Staff'" :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
+            <x-app-logo :name="'Fatema Al-Zahraa'" :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
 
             <flux:spacer />
 
@@ -25,8 +25,8 @@
             {{-- Admin Sidebar --}}
             @hasrole('admin')
                 <flux:sidebar.group expandable icon="users" heading="{{ __('global.sidebar.users') }}">
-                    <flux:sidebar.item icon="user" href="#" wire:navigate>{{ __('global.sidebar.students') }}</flux:sidebar.item>
-                    <flux:sidebar.item icon="user-group" href="#" wire:navigate>{{ __('global.sidebar.teachers') }}</flux:sidebar.item>
+                    <flux:sidebar.item icon="user" :href="route('users.index', ['roleFilter' => 'student'])" :current="request('roleFilter') === 'student'" wire:navigate>{{ __('global.sidebar.students') }}</flux:sidebar.item>
+                    <flux:sidebar.item icon="user-group" :href="route('users.index', ['roleFilter' => 'teacher'])" :current="request('roleFilter') === 'teacher'" wire:navigate>{{ __('global.sidebar.teachers') }}</flux:sidebar.item>
                 </flux:sidebar.group>
                 <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.circles') }}</flux:sidebar.item>
                 <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.schedule') }}</flux:sidebar.item>
@@ -60,13 +60,6 @@
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />
-
-        <!-- <flux:sidebar.nav>
-            <flux:sidebar.item icon="cog-6-tooth" :href="route('profile.edit')" wire:navigate>
-                {{ __('global.sidebar.settings') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item icon="information-circle" href="#">{{ __('global.sidebar.help') }}</flux:sidebar.item>
-        </flux:sidebar.nav> -->
 
         <flux:dropdown position="top" align="start" class="max-lg:hidden">
             <flux:sidebar.profile :avatar="auth()->user()->avatar ?? 'https://fluxui.dev/img/demo/user.png'"
@@ -107,7 +100,7 @@
         </flux:dropdown>
     </flux:sidebar>
 
-    <flux:header sticky class="block! bg-white lg:bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
+    <flux:header sticky class="block! bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
         <flux:navbar class="w-full">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
@@ -135,16 +128,9 @@
                 </flux:menu>
             </flux:dropdown>
         </flux:navbar>
-
-        <!-- <flux:navbar scrollable>
-            <flux:navbar.item href="#" current>{{ __('global.sidebar.dashboard') }}</flux:navbar.item>
-            <flux:navbar.item badge="32" href="#">{{ __('global.sidebar.orders') }}</flux:navbar.item>
-            <flux:navbar.item href="#">{{ __('global.sidebar.catalog') }}</flux:navbar.item>
-            <flux:navbar.item href="#">{{ __('global.sidebar.configuration') }}</flux:navbar.item>
-        </flux:navbar> -->
     </flux:header>
 
-    <flux:main>
+    <flux:main class="relative bg-zinc-50 dark:bg-zinc-950" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
         {{ $slot }}
     </flux:main>
 

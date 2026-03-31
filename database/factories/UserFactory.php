@@ -5,6 +5,8 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Infrastructure\Persistence\Eloquent\Models\User;
+use App\Domains\Identity\Enums\UserStatus;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Infrastructure\Persistence\Eloquent\Models\User>
@@ -14,7 +16,7 @@ class UserFactory extends Factory
     /**
      * The name of the factory's corresponding model.
      */
-    protected $model = \App\Infrastructure\Persistence\Eloquent\Models\User::class;
+    protected $model = User::class;
 
     /**
      * The current password being used by the factory.
@@ -29,11 +31,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'phone_number' => fake()->phoneNumber(),
             'password' => static::$password ??= Hash::make('Password123@'),
             'remember_token' => Str::random(10),
+            'status' => UserStatus::ACTIVE,
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'two_factor_confirmed_at' => null,

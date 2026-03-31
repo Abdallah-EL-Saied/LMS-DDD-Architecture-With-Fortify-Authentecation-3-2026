@@ -35,6 +35,10 @@ class SocialController
                 $socialUser->getName() ?: $socialUser->getNickname()
             );
 
+            if ($user->isBanned()) {
+                throw new \Exception(__('This account is blocked. Please contact administration.'));
+            }
+
             // Manual login since we are using DDD entities and Fortify doesn't handle this directly
             $eloquentUser = \App\Infrastructure\Persistence\Eloquent\Models\User::find($user->id());
 
@@ -49,8 +53,19 @@ class SocialController
         } catch (\Exception $e) {
             $route = Auth::check() ? 'external-accounts.edit' : 'login';
             
+            $bannedMessage = __('This account is blocked. Please contact administration.');
+            $message = (config('app.debug') || $e->getMessage() === $bannedMessage) 
+                ? $e->getMessage() 
+                : __('An error occurred while authenticating. Please try again.');
+            
+            // Log the detailed error for the developer
+            logger()->error('Social Auth Error: ' . $e->getMessage(), [
+                'exception' => $e,
+                'provider' => $provider
+            ]);
+
             return redirect()->route($route)->withErrors([
-                'email' => 'Failed: ' . $e->getMessage(),
+                'email' => $message,
             ]);
         }
     }

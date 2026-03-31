@@ -24,10 +24,19 @@ class ResetPasswordAction
         // For now, simple update
         $user = \App\Domains\Identity\Entities\User::fromPersistence(
             $user->id(),
-            $user->name(),
+            $user->firstName(),
+            $user->middleName(),
+            $user->lastName(),
             $user->email(),
             Hash::make($newPassword),
-            $user->emailVerifiedAt()
+            $user->dateOfBirth(),
+            $user->phoneNumber(),
+            $user->gender(),
+            $user->status(),
+            $user->address(),
+            $user->emailVerifiedAt(),
+            $user->roles(),
+            $user->googleId()
         );
 
         $this->userRepository->save($user);
