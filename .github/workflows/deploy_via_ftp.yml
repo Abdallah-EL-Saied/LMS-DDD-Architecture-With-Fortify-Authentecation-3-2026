@@ -55,6 +55,6 @@ jobs:
           port: 65002
           script: |
             cd /home/u410442266/domains/fatemaalzahraa.com/public_html/dev
-            composer install --no-dev --optimize-autoloader
+            composer install --optimize-autoloader
             php artisan migrate --force
             php artisan optimize
