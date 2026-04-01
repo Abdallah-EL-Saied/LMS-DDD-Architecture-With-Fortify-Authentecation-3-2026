@@ -130,7 +130,7 @@
         </flux:navbar>
     </flux:header>
 
-    <flux:main class="relative bg-zinc-50 dark:bg-zinc-950" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+    <flux:main class="relative bg-zinc-50 dark:bg-zinc-950 flex h-full p-0!" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
         {{ $slot }}
     </flux:main>
 

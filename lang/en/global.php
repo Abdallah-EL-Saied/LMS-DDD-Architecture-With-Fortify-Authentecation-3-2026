@@ -60,5 +60,6 @@ return [
         'settings' => 'Settings',
         'help' => 'Help',
         'logout' => 'Log Out',
+        'close' => 'Close',
     ],
 ];
