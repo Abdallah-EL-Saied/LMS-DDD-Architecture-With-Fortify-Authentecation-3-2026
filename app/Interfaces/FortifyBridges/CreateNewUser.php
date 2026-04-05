@@ -33,7 +33,9 @@ class CreateNewUser implements CreatesNewUsers
 
         $userEntity = $this->registerUserAction->execute(
             new RegisterUserInput(
-                $input['name'],
+                $input['first_name'],
+                $input['middle_name'] ?? null,
+                $input['last_name'],
                 $input['email'],
                 $input['password']
             )

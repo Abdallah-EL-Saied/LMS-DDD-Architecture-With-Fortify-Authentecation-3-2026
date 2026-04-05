@@ -9,11 +9,18 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Concerns\Traits\Filterable;
+use App\Domains\Identity\Enums\UserStatus;
+use Database\Factories\UserFactory;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles, Filterable;
+
+    protected array $searchable = ['first_name', 'last_name', 'email', 'phone_number'];
+    protected array $filterable = ['status', 'roles', 'gender', 'country', 'city', 'initial_letter', 'first_name', 'last_name'];
+    protected array $sortable = ['first_name', 'last_name', 'email', 'status', 'last_login_at', 'created_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -21,10 +28,20 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
         'email',
         'password',
+        'date_of_birth',
+        'gender',
+        'phone_number',
+        'status',
+        'country',
+        'city',
+        'street_address',
         'google_id',
+        'last_login_at',
     ];
 
     /**
@@ -48,7 +65,10 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'date_of_birth' => 'date',
             'password' => 'hashed',
+            'status' => UserStatus::class,
+            'last_login_at' => 'datetime',
         ];
     }
 
@@ -57,11 +77,15 @@ class User extends Authenticatable
      */
     public function initials(): string
     {
-        return Str::of($this->name)
-            ->explode(' ')
-            ->take(2)
-            ->map(fn($word) => Str::substr($word, 0, 1))
-            ->implode('');
+        return Str::substr($this->first_name, 0, 1) . Str::substr($this->last_name, 0, 1);
+    }
+
+    /**
+     * Get the user's full name
+     */
+    public function getNameAttribute(): string
+    {
+        return trim("{$this->first_name} {$this->middle_name} {$this->last_name}");
     }
 
     /**
@@ -69,6 +93,6 @@ class User extends Authenticatable
      */
     protected static function newFactory()
     {
-        return \Database\Factories\UserFactory::new();
+        return UserFactory::new();
     }
 }

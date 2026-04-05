@@ -17,14 +17,31 @@ class EloquentUserRepository extends BaseRepository implements RepositoryInterfa
 
     protected function mapToDomain(Model $model): User
     {
+        $address = null;
+        if ($model->country && $model->city) {
+            $address = new \App\Domains\Identity\ValueObjects\Address(
+                $model->country,
+                $model->city,
+                $model->street_address ?? ''
+            );
+        }
+
         return User::fromPersistence(
             $model->id,
-            $model->name,
+            $model->first_name,
+            $model->middle_name,
+            $model->last_name ?? '',
             $model->email,
             $model->password,
+            $model->date_of_birth ? new \DateTimeImmutable($model->date_of_birth->toDateString()) : null,
+            $model->phone_number,
+            $model->gender,
+            $model->status ?? \App\Domains\Identity\Enums\UserStatus::ACTIVE,
+            $address,
             $model->email_verified_at ? new \DateTimeImmutable($model->email_verified_at->toDateTimeString()) : null,
             $model->roles->pluck('name')->toArray(),
-            $model->google_id
+            $model->google_id,
+            $model->last_login_at ? new \DateTimeImmutable($model->last_login_at->toDateTimeString()) : null
         );
     }
 
@@ -43,10 +60,23 @@ class EloquentUserRepository extends BaseRepository implements RepositoryInterfa
     public function save(User $user): User
     {
         $data = [
-            'name' => $user->name(),
+            'first_name' => $user->firstName(),
+            'middle_name' => $user->middleName(),
+            'last_name' => $user->lastName(),
             'email' => $user->email(),
+            'date_of_birth' => $user->dateOfBirth()?->format('Y-m-d'),
+            'phone_number' => $user->phoneNumber(),
+            'gender' => $user->gender(),
+            'status' => $user->status(),
             'google_id' => $user->googleId(),
+            'last_login_at' => $user->lastLoginAt()?->format('Y-m-d H:i:s'),
         ];
+
+        if ($user->address()) {
+            $data['country'] = $user->address()->country();
+            $data['city'] = $user->address()->city();
+            $data['street_address'] = $user->address()->streetAddress();
+        }
 
         if ($user->googleId()) {
             $data['email_verified_at'] = now();

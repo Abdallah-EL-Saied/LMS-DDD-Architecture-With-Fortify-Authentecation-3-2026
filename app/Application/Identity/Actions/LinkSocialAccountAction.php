@@ -32,12 +32,20 @@ class LinkSocialAccountAction
         // 3. Update user with google_id
         $updatedUser = User::fromPersistence(
             $user->id(),
-            $user->name(),
+            $user->firstName(),
+            $user->middleName(),
+            $user->lastName(),
             $user->email(),
             $user->password(),
+            $user->dateOfBirth(),
+            $user->phoneNumber(),
+            $user->gender(),
+            $user->status(),
+            $user->address(),
             $user->emailVerifiedAt(),
             $user->roles(),
-            $googleId
+            $googleId,
+            $user->lastLoginAt()
         );
 
         return $this->userRepository->save($updatedUser);

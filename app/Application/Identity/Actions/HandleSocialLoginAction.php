@@ -29,29 +29,50 @@ class HandleSocialLoginAction
             // Update user with google_id
             $updatedUser = User::fromPersistence(
                 $user->id(),
-                $user->name(),
+                $user->firstName(),
+                $user->middleName(),
+                $user->lastName(),
                 $user->email(),
                 $user->password(),
-                $user->emailVerifiedAt(),
+                $user->dateOfBirth(),
+                $user->phoneNumber(),
+                $user->gender(),
+                $user->status(),
+                $user->address(),
+                $user->emailVerifiedAt() ?? now()->toDateTimeImmutable(), // Mark verified when linking google
                 $user->roles(),
-                $googleId
+                $googleId,
+                $user->lastLoginAt()
             );
 
             return $this->userRepository->save($updatedUser);
         }
 
         // 3. Create new user
+        // Split name into first and last
+        $parts = explode(' ', $name, 2);
+        $firstName = $parts[0];
+        $lastName = $parts[1] ?? '';
+
         // Generate a default password 'password' since they are login via social
         $password = bcrypt('password');
 
         $newUser = User::fromPersistence(
             0, // New user
-            $name,
+            $firstName,
+            null,
+            $lastName,
             $email,
             $password,
+            null,
+            null,
+            null,
+            \App\Domains\Identity\Enums\UserStatus::ACTIVE,
+            null,
             now()->toDateTimeImmutable(),
             ['student'], // Default role for social signup
-            $googleId
+            $googleId,
+            null
         );
 
         return $this->userRepository->save($newUser);

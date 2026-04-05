@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Interfaces\FortifyBridges\CreateNewUser;
 use App\Interfaces\FortifyBridges\ResetUserPassword;
+use App\Domains\Identity\Enums\UserStatus;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Validation\ValidationException;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -73,9 +75,11 @@ class FortifyServiceProvider extends ServiceProvider
             $user = \App\Infrastructure\Persistence\Eloquent\Models\User::where('email', $request->email)->first();
 
             if ($user && \Illuminate\Support\Facades\Hash::check($request->password, $user->password)) {
-                // Block login if password is the default 'password'
-                if ($request->password === 'password') {
-                    return null;
+                // Check if user is banned
+                if ($user->status === UserStatus::BANNED) {
+                    throw ValidationException::withMessages([
+                        Fortify::username() => [__('This account is blocked. Please contact administration.')],
+                    ]);
                 }
 
                 return $user;

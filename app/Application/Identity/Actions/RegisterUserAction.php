@@ -18,10 +18,17 @@ class RegisterUserAction
     {
         $user = User::fromPersistence(
             0,
-            $input->name,
+            $input->firstName,
+            $input->middleName,
+            $input->lastName,
             $input->email,
             Hash::make($input->password),
-            null,
+            null, // dob
+            null, // phone
+            null, // gender
+            \App\Domains\Identity\Enums\UserStatus::ACTIVE,
+            null, // address
+            null, // emailVerifiedAt
             ['student']
         );
 

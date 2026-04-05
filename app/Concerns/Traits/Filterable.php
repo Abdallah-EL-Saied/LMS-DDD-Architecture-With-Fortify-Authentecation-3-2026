@@ -73,11 +73,13 @@ trait Filterable
     |
     */
 
-    protected function applySearch(Builder $query, string $term, array $columns): void
+    protected function applySearch(Builder $query, $term, array $columns): void
     {
-        if (!$term || empty($columns)) {
+        if (empty($term) || empty($columns)) {
             return;
         }
+
+        $terms = is_array($term) ? $term : [$term];
 
         // Allow only searchable columns
         $allowed = $this->searchable ?? [];
@@ -88,9 +90,14 @@ trait Filterable
             return;
         }
 
-        $query->where(function ($q) use ($term, $columns) {
-            foreach ($columns as $column) {
-                $this->applyLike($q, $column, $term, 'or');
+        $query->where(function ($q) use ($terms, $columns) {
+            foreach ($terms as $t) {
+                if (trim((string)$t) === '') continue;
+                $q->where(function ($subQ) use ($t, $columns) {
+                    foreach ($columns as $column) {
+                        $this->applyLike($subQ, $column, (string)$t, 'or');
+                    }
+                });
             }
         });
     }
