@@ -3,7 +3,6 @@ name: Build and Deploy Laravel
 on:
   push:
     branches:
-      - main
       - dev
 
 jobs:
