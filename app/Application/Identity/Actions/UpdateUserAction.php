@@ -21,7 +21,11 @@ class UpdateUserAction
             throw new \Exception("User not found");
         }
 
-        $user->changeName($input->name);
+        $user->changeName(
+            $input->firstName,
+            $input->middleName,
+            $input->lastName
+        );
         // Add other domain methods like changeEmail if needed in the Entity
 
         return $this->userRepository->save($user);

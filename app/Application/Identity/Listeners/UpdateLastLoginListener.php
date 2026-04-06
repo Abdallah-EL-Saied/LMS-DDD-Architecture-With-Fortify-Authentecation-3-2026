@@ -2,7 +2,7 @@
 
 namespace App\Application\Identity\Listeners;
 
-use App\Infrastructure\Repositories\EloquentUserRepository;
+use App\Domains\Identity\RepositoryInterface\IUserRepository;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Infrastructure\Persistence\Eloquent\Models\User;
@@ -10,7 +10,7 @@ use App\Infrastructure\Persistence\Eloquent\Models\User;
 class UpdateLastLoginListener
 {
     public function __construct(
-        private EloquentUserRepository $userRepository
+        private IUserRepository $userRepository
     ) {}
 
     public function handle(Login $event): void

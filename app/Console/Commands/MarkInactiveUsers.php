@@ -36,16 +36,14 @@ class MarkInactiveUsers extends Command
         
         $count = 0;
         
-        // We use a simple loop or chunking if needed. 
-        // For the sake of this implementation, we'll use the repository filter.
-        $paginator = $userRepository->filter(['status' => UserStatus::ACTIVE], [], null, 100);
-
-        foreach ($paginator as $user) {
-            if ($statusService->syncInactivityStatus($user)) {
-                $userRepository->save($user);
-                $count++;
+        $userRepository->chunkById(500, function ($users) use ($statusService, $userRepository, &$count) {
+            foreach ($users as $user) {
+                if ($statusService->syncInactivityStatus($user)) {
+                    $userRepository->save($user);
+                    $count++;
+                }
             }
-        }
+        }, ['status' => UserStatus::ACTIVE]);
 
         $this->info("Successfully marked {$count} users as INACTIVE.");
     }

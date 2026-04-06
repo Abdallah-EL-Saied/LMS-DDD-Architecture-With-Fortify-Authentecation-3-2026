@@ -6,7 +6,9 @@ readonly class UpdateUserInput
 {
     public function __construct(
         public int $id,
-        public string $name,
+        public string $firstName,
+        public ?string $middleName,
+        public string $lastName,
         public string $email,
         public ?string $password = null
     ) {

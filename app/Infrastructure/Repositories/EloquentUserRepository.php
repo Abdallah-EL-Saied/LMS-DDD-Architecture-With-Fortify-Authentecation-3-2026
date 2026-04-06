@@ -97,4 +97,24 @@ class EloquentUserRepository extends BaseRepository implements RepositoryInterfa
 
         return $this->mapToDomain($model);
     }
+
+    public function chunkById(int $count, callable $callback, array $filters = [])
+    {
+        $query = $this->model->query();
+
+        if (!empty($filters)) {
+            if (method_exists($this->model, 'scopeFilter')) {
+                $query->filter($filters);
+            } else {
+                foreach ($filters as $field => $value) {
+                    $query->where($field, $value);
+                }
+            }
+        }
+
+        return $query->chunkById($count, function (\Illuminate\Database\Eloquent\Collection $models) use ($callback) {
+            $domainEntities = $models->map(fn(UserModel $model) => $this->mapToDomain($model))->all();
+            return $callback($domainEntities);
+        });
+    }
 }

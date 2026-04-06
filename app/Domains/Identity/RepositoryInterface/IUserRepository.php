@@ -2,15 +2,13 @@
 
 namespace App\Domains\Identity\RepositoryInterface;
 
+use App\Concerns\Repositories\BaseRepositoryInterface;
 use App\Domains\Identity\Entities\User;
 
-interface IUserRepository
+interface IUserRepository extends BaseRepositoryInterface
 {
-    public function all(array $columns = ['*'], array $relations = [], int $perPage = 15);
-    public function filter(array $filters = [], array $relations = [], ?string $sort = null, int $perPage = 15);
-    public function findById($id, array $columns = ['*'], array $relations = []);
     public function findByEmail(string $email): ?User;
     public function findByGoogleId(string $id): ?User;
     public function save(User $user): User;
-    public function delete(int $id);
+    public function chunkById(int $count, callable $callback, array $filters = []);
 }

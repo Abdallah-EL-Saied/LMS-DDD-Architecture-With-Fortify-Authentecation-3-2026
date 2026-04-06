@@ -166,14 +166,14 @@ class User
         return in_array($role, $this->roles);
     }
 
-    public function changeName(string $first, ?string $middle, string $last): void
+    public function changeName(string $firstName, ?string $middleName, string $lastName): void
     {
-        if (empty($first) || empty($last)) {
+        if (empty($firstName) || empty($lastName)) {
             throw new \InvalidArgumentException('First and Last name cannot be empty');
         }
-        $this->firstName = $first;
-        $this->middleName = $middle;
-        $this->lastName = $last;
+        $this->firstName = $firstName;
+        $this->middleName = $middleName;
+        $this->lastName = $lastName;
     }
 
     public function changeEmail(string $email): void
