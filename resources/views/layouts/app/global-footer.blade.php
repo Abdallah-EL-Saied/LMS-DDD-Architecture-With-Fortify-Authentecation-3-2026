@@ -55,11 +55,11 @@
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
                             {{ __('global.header.courses') }}</a></li>
-                    <li><a href="#"
+                    <li><a href="{{ route('careers') }}"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            {{ __('global.footer.teachers') }}</a></li>
-                    <li><a href="#"
+                            {{ __('global.footer.careers') }}</a></li>
+                    <li><a href="{{ route('contact') }}"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
                             {{ __('global.header.contact') }}</a></li>

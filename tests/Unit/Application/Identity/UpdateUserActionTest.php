@@ -14,7 +14,7 @@ class UpdateUserActionTest extends TestCase
     {
         $repository = $this->createMock(IUserRepository::class);
 
-        $existingUser = User::fromPersistence(1, 'Old Name', 'old@example.com');
+        $existingUser = User::fromPersistence(1, 'Old', null, 'Name', 'old@example.com');
 
         $repository->expects($this->once())
             ->method('findById')
@@ -27,7 +27,7 @@ class UpdateUserActionTest extends TestCase
             ->willReturnCallback(fn($user) => $user);
 
         $action = new UpdateUserAction($repository);
-        $input = new UpdateUserInput(1, 'New Name', 'old@example.com');
+        $input = new UpdateUserInput(1, 'New', null, 'Name', 'old@example.com');
 
         $result = $action->execute($input);
 
@@ -41,7 +41,7 @@ class UpdateUserActionTest extends TestCase
         $repository->method('findById')->willReturn(null);
 
         $action = new UpdateUserAction($repository);
-        $input = new UpdateUserInput(99, 'Name', 'email@example.com');
+        $input = new UpdateUserInput(99, 'Name', null, 'User', 'email@example.com');
 
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('User not found');

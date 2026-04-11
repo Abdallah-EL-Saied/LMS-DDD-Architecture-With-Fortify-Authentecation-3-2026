@@ -11,4 +11,5 @@ interface IUserRepository extends BaseRepositoryInterface
     public function findByGoogleId(string $id): ?User;
     public function save(User $user): User;
     public function chunkById(int $count, callable $callback, array $filters = []);
+    public function syncSpecializations(int $userId, array $specializationIds): void;
 }

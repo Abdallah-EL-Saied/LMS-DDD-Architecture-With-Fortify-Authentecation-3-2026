@@ -249,9 +249,13 @@ trait Filterable
             return;
         }
 
-        // CUSTOM OPERATOR
+        // CUSTOM OPERATOR (Supports JSON_CONTAINS specifically)
         if (is_array($value) && isset($value['operator'], $value['value'])) {
-            $query->where($column, $value['operator'], $value['value']);
+            if (strtoupper($value['operator']) === 'JSON_CONTAINS') {
+                $query->whereJsonContains($column, $value['value']);
+            } else {
+                $query->where($column, $value['operator'], $value['value']);
+            }
             return;
         }
 

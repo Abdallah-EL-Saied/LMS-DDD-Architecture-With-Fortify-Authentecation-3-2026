@@ -70,6 +70,7 @@ class EloquentUserRepository extends BaseRepository implements RepositoryInterfa
             'status' => $user->status(),
             'google_id' => $user->googleId(),
             'last_login_at' => $user->lastLoginAt()?->format('Y-m-d H:i:s'),
+            'email_verified_at' => $user->emailVerifiedAt()?->format('Y-m-d H:i:s'),
         ];
 
         if ($user->address()) {
@@ -78,18 +79,16 @@ class EloquentUserRepository extends BaseRepository implements RepositoryInterfa
             $data['street_address'] = $user->address()->streetAddress();
         }
 
-        if ($user->googleId()) {
-            $data['email_verified_at'] = now();
-        }
-
         if ($user->password()) {
             $data['password'] = $user->password();
         }
 
-        $model = $this->model->updateOrCreate(
-            ['id' => $user->id()],
-            $data
-        );
+        $model = $user->id()
+            ? $this->model->updateOrCreate(['id' => $user->id()], $data)
+            : tap(new UserModel(), function (UserModel $model) use ($data) {
+                $model->fill($data);
+                $model->save();
+            });
 
         if (!empty($user->roles())) {
             $model->syncRoles($user->roles());
@@ -116,5 +115,13 @@ class EloquentUserRepository extends BaseRepository implements RepositoryInterfa
             $domainEntities = $models->map(fn(UserModel $model) => $this->mapToDomain($model))->all();
             return $callback($domainEntities);
         });
+    }
+
+    public function syncSpecializations(int $userId, array $specializationIds): void
+    {
+        $model = $this->model->find($userId);
+        if ($model) {
+            $model->specializations()->sync($specializationIds);
+        }
     }
 }

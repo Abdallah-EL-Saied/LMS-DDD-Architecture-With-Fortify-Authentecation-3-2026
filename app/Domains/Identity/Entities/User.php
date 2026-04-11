@@ -46,7 +46,7 @@ class User
     }
 
     public static function fromPersistence(
-        int $id,
+        ?int $id,
         string $firstName,
         ?string $middleName,
         string $lastName,
@@ -103,7 +103,16 @@ class User
 
     public function fullName(): string
     {
-        return trim("{$this->firstName} {$this->middleName} {$this->lastName}");
+        return implode(' ', array_filter([
+            $this->firstName,
+            $this->middleName,
+            $this->lastName,
+        ], fn ($value) => $value !== null && $value !== ''));
+    }
+
+    public function name(): string
+    {
+        return $this->fullName();
     }
 
     public function email(): string
@@ -171,6 +180,7 @@ class User
         if (empty($firstName) || empty($lastName)) {
             throw new \InvalidArgumentException('First and Last name cannot be empty');
         }
+
         $this->firstName = $firstName;
         $this->middleName = $middleName;
         $this->lastName = $lastName;

@@ -1,0 +1,38 @@
+<?php
+
+return [
+    'title' => 'Specializations',
+    'management_title' => 'Specializations Management',
+    'add_specialization' => 'Add Specialization',
+    'search_placeholder' => 'Search specializations...',
+    'name_ar' => 'Name (AR)',
+    'name_en' => 'Name (EN)',
+    'status' => 'Status',
+    'actions' => 'Actions',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'delete_confirm' => 'Are you sure you want to delete this specialization?',
+    'modal' => [
+        'create_title' => 'Create Specialization',
+        'edit_title' => 'Edit Specialization',
+        'subtitle' => 'Define a field of expertise for your teachers.',
+        'name_ar' => 'Name (Arabic)',
+        'name_en' => 'Name (English)',
+        'description_ar' => 'Description (Arabic)',
+        'description_en' => 'Description (English)',
+        'active' => 'Active',
+        'active_help' => 'Inactive specializations stay visible in the admin dashboard, but are hidden from the public application form.',
+        'cancel' => 'Cancel',
+        'save' => 'Save Changes',
+    ],
+    'toast' => [
+        'success' => 'Success',
+        'created' => 'Specialization created successfully.',
+        'updated' => 'Specialization updated successfully.',
+        'deleted' => 'Specialization deleted successfully.',
+        'error' => 'Error',
+    ],
+    'no_results' => 'No specializations match your search at the moment.',
+];

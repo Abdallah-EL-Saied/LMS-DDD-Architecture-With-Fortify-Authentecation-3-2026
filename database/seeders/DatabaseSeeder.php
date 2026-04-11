@@ -15,7 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PermissionSeeder::class);
+        $this->call([
+            PermissionSeeder::class,
+            SpecializationSeeder::class,
+            JobApplicationSeeder::class,
+        ]);
 
         // 1. Create/Ensure Test Admin
         $admin = User::updateOrCreate(
@@ -29,19 +33,25 @@ class DatabaseSeeder extends Seeder
                 'gender' => 'male',
                 'country' => 'Egypt',
                 'city' => 'Cairo',
-                'password' => Hash::make('123456789'),
+                'password' => '123456789',
                 'status' => UserStatus::ACTIVE,
             ]
         );
         $admin->assignRole('admin');
 
         // 2. Create 2 more Admins
-        User::factory(2)->create()->each(fn($u) => $u->assignRole('admin'));
+        User::factory(2)->create()->each(function (User $u) {
+            $u->assignRole('admin');
+        });
 
         // 3. Create 10 Teachers
-        User::factory(10)->create()->each(fn($u) => $u->assignRole('teacher'));
+        User::factory(10)->create()->each(function (User $u) {
+            $u->assignRole('teacher');
+        });
 
         // 4. Create 37 Students
-        User::factory(37)->create()->each(fn($u) => $u->assignRole('student'));
+        User::factory(37)->create()->each(function (User $u) {
+            $u->assignRole('student');
+        });
     }
 }

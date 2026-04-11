@@ -45,6 +45,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * The specializations that belong to the teacher.
+     */
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class, 'teacher_specializations', 'teacher_id', 'specialization_id');
+    }
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
@@ -85,7 +93,11 @@ class User extends Authenticatable
      */
     public function getNameAttribute(): string
     {
-        return trim("{$this->first_name} {$this->middle_name} {$this->last_name}");
+        return implode(' ', array_filter([
+            $this->first_name,
+            $this->middle_name,
+            $this->last_name,
+        ], fn ($value) => filled($value)));
     }
 
     /**

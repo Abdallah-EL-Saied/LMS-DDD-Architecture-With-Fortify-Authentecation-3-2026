@@ -10,7 +10,9 @@ test('new users can register', function () {
     \Spatie\Permission\Models\Role::create(['name' => 'student']);
 
     $response = $this->post(route('register.store'), [
-        'name' => 'John Doe',
+        'first_name' => 'John',
+        'middle_name' => null,
+        'last_name' => 'Doe',
         'email' => 'test@example.com',
         'password' => 'Password123@',
         'password_confirmation' => 'Password123@',

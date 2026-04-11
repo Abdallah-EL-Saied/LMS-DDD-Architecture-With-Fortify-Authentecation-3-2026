@@ -27,6 +27,8 @@
                 <flux:sidebar.group expandable icon="users" heading="{{ __('global.sidebar.users') }}">
                     <flux:sidebar.item icon="user" :href="route('users.index', ['roleFilter' => 'student'])" :current="request('roleFilter') === 'student'" wire:navigate>{{ __('global.sidebar.students') }}</flux:sidebar.item>
                     <flux:sidebar.item icon="user-group" :href="route('users.index', ['roleFilter' => 'teacher'])" :current="request('roleFilter') === 'teacher'" wire:navigate>{{ __('global.sidebar.teachers') }}</flux:sidebar.item>
+                    <flux:sidebar.item icon="academic-cap" :href="route('specializations.index')" :current="request()->routeIs('specializations.index')" wire:navigate>{{ __('global.sidebar.specializations') }}</flux:sidebar.item>
+                    <flux:sidebar.item icon="briefcase" :href="route('job-applications.index')" :current="request()->routeIs('job-applications.index')" wire:navigate>{{ __('global.sidebar.job_applications') }}</flux:sidebar.item>
                 </flux:sidebar.group>
                 <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.circles') }}</flux:sidebar.item>
                 <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.schedule') }}</flux:sidebar.item>

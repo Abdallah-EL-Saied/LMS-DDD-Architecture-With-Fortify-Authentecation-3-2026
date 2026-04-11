@@ -18,6 +18,7 @@ Route::middleware(['guest'])->group(function () {
     Route::livewire('/courses', 'pages::global.courses.index')->name('courses');
     Route::livewire('/about', 'pages::global.about.index')->name('about');
     Route::livewire('/pricing', 'pages::global.pricing.index')->name('pricing');
+    Route::livewire('/careers', 'pages::global.careers.index')->name('careers');
     Route::livewire('/contact', 'pages::global.contact.index')->name('contact');
 
     // Debug Page for Loader
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::middleware(['role:admin'])->group(function () {
         Route::livewire('users', 'pages::users.index')->name('users.index');
+        Route::livewire('specializations', 'pages::staff-dashboard.specializations.index')->name('specializations.index');
+        Route::livewire('job-applications', 'pages::staff-dashboard.recruitment.index')->name('job-applications.index');
     });
 });
 

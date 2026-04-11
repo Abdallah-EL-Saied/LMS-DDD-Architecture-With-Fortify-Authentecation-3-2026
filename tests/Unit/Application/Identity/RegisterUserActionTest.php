@@ -22,12 +22,12 @@ class RegisterUserActionTest extends TestCase
             ->willReturnCallback(fn($user) => $user);
 
         $action = new RegisterUserAction($repository);
-        $input = new RegisterUserInput('Ahmed', 'ahmed@example.com', 'hashed_password');
+        $input = new RegisterUserInput('Ahmed', null, 'Yahia', 'ahmed@example.com', 'plain_password');
 
         $result = $action->execute($input);
 
         $this->assertInstanceOf(User::class, $result);
-        $this->assertEquals('Ahmed', $result->name());
+        $this->assertEquals('Ahmed Yahia', $result->name());
         $this->assertEquals('ahmed@example.com', $result->email());
     }
 }
