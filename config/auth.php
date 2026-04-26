@@ -26,7 +26,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Next, you may define every authentication guard for your application.
-    | Of course, a great default configuration has been defined for you
+    | Of program, a great default configuration has been defined for you
     | which utilizes session storage plus the Eloquent user provider.
     |
     | All authentication guards have a user provider, which defines how the

@@ -18,17 +18,17 @@ class PermissionSeeder extends Seeder
 
         // Create Permissions
         Permission::firstOrCreate(['name' => 'manage users']);
-        Permission::firstOrCreate(['name' => 'manage courses']);
-        Permission::firstOrCreate(['name' => 'view courses']);
+        Permission::firstOrCreate(['name' => 'manage programs']);
+        Permission::firstOrCreate(['name' => 'view programs']);
 
         // Create Roles and assign permissions
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $adminRole->givePermissionTo(Permission::all());
 
         $teacherRole = Role::firstOrCreate(['name' => 'teacher']);
-        $teacherRole->givePermissionTo(['manage courses', 'view courses']);
+        $teacherRole->givePermissionTo(['manage programs', 'view programs']);
 
         $studentRole = Role::firstOrCreate(['name' => 'student']);
-        $studentRole->givePermissionTo('view courses');
+        $studentRole->givePermissionTo('view programs');
     }
 }

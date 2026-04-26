@@ -20,7 +20,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     abstract protected function mapToDomain(Model $model);
 
     // Get all data transformed to Domain
-    public function all(array $columns = ['*'], array $relations = ['roles'], int $perPage = 15)
+    public function all(array $columns = ['*'], array $relations = [], int $perPage = 15)
     {
         $paginator = $this->model->select($columns)->with($relations)->paginate($perPage);
 
@@ -57,6 +57,18 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $model = $this->model->findOrFail($id);
         return $model->delete();
+    }
+
+    // Count records
+    public function count(array $filters = []): int
+    {
+        $query = $this->model->query();
+
+        if (method_exists($this->model, 'scopeFilter')) {
+            $query->filter($filters);
+        }
+
+        return $query->count();
     }
 
     // Filter with pagination and sorting

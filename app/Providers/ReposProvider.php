@@ -22,5 +22,17 @@ class ReposProvider extends ServiceProvider
             \App\Domains\Recruitment\RepositoryInterface\IJobApplicationRepository::class,
             \App\Infrastructure\Repositories\EloquentJobApplicationRepository::class
         );
+        $this->app->bind(
+            \App\Domains\Academy\RepositoryInterface\IAcademyScheduleRepository::class,
+            \App\Infrastructure\Repositories\EloquentAcademyScheduleRepository::class
+        );
+        $this->app->bind(
+            \App\Domains\Program\RepositoryInterface\IProgramRepository::class,
+            \App\Infrastructure\Repositories\EloquentProgramRepository::class
+        );
+        $this->app->bind(
+            \App\Domains\Program\RepositoryInterface\IBundleRepository::class,
+            \App\Infrastructure\Repositories\EloquentBundleRepository::class
+        );
     }
 }

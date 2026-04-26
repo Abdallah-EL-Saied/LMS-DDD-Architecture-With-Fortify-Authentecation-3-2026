@@ -27,7 +27,7 @@ new #[Layout('layouts.welcome')] class extends Component {
     <livewire:pages::global.home.hero />
     <livewire:pages::global.home.features />
     <livewire:pages::global.home.stats />
-    <livewire:pages::global.home.courses />
+    <livewire:pages::global.home.programs />
     <livewire:pages::global.home.gallery />
     <livewire:pages::global.home.testimonials />
     {{-- <livewire:pages::global.home.how-it-works /> --}}

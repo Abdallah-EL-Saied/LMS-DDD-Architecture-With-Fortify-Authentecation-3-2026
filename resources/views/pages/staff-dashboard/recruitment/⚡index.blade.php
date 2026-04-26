@@ -11,8 +11,13 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-new #[Layout('layouts.app')] #[Title('Teacher Applications')] class extends Component {
+new #[Layout('layouts.app')] class extends Component {
     use WithPagination;
+
+    public function rendering($view)
+    {
+        $view->title(__('staff-dashboard/recruitment.title'));
+    }
 
     #[Url]
     public string $statusFilter = 'all';
@@ -160,10 +165,11 @@ new #[Layout('layouts.app')] #[Title('Teacher Applications')] class extends Comp
                         </div>
 
                         <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-                            <flux:badge size="sm" :color="match($app->status()) {
-                                RequestStatus::PENDING => 'yellow',
-                                RequestStatus::APPROVED => 'emerald',
-                                RequestStatus::REJECTED => 'red',
+                             <flux:badge size="sm" :color="match($app->status()) {
+                                RequestStatus::PENDING, 'pending' => 'yellow',
+                                RequestStatus::APPROVED, 'approved' => 'emerald',
+                                RequestStatus::REJECTED, 'rejected' => 'red',
+                                default => 'zinc',
                             }">
                                 {{ $app->status()->value }}
                             </flux:badge>
@@ -200,9 +206,9 @@ new #[Layout('layouts.app')] #[Title('Teacher Applications')] class extends Comp
                                         <flux:label size="sm" class="mb-2">{{ __('staff-dashboard/recruitment.specializations') }}</flux:label>
                                         <div class="flex flex-wrap gap-1">
                                             @foreach($app->specializationIds() as $sid)
-                                                <flux:badge size="sm">
-                                                    {{ $this->specializations->get($sid)?->name()[app()->getLocale()] ?? $this->specializations->get($sid)?->name()['en'] ?? 'Unknown' }}
-                                                </flux:badge>
+                                                 <flux:badge size="sm">
+                                                     {{ $this->specializations->get($sid)?->name()[app()->getLocale()] ?? $this->specializations->get($sid)?->name()['ar'] ?? 'Unknown' }}
+                                                 </flux:badge>
                                             @endforeach
                                         </div>
                                     </div>

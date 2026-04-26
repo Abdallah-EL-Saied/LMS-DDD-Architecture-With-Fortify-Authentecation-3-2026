@@ -18,47 +18,102 @@
         <!-- <flux:sidebar.search placeholder="{{ __('global.header.search_placeholder') }}" /> -->
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+            <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
+                wire:navigate>
                 {{ __('global.sidebar.dashboard') }}
             </flux:sidebar.item>
 
             {{-- Admin Sidebar --}}
             @hasrole('admin')
-                <flux:sidebar.group expandable icon="users" heading="{{ __('global.sidebar.users') }}">
-                    <flux:sidebar.item icon="user" :href="route('users.index', ['roleFilter' => 'student'])" :current="request('roleFilter') === 'student'" wire:navigate>{{ __('global.sidebar.students') }}</flux:sidebar.item>
-                    <flux:sidebar.item icon="user-group" :href="route('users.index', ['roleFilter' => 'teacher'])" :current="request('roleFilter') === 'teacher'" wire:navigate>{{ __('global.sidebar.teachers') }}</flux:sidebar.item>
-                    <flux:sidebar.item icon="academic-cap" :href="route('specializations.index')" :current="request()->routeIs('specializations.index')" wire:navigate>{{ __('global.sidebar.specializations') }}</flux:sidebar.item>
-                    <flux:sidebar.item icon="briefcase" :href="route('job-applications.index')" :current="request()->routeIs('job-applications.index')" wire:navigate>{{ __('global.sidebar.job_applications') }}</flux:sidebar.item>
-                </flux:sidebar.group>
-                <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.circles') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.schedule') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="document-text" href="#" wire:navigate>{{ __('global.sidebar.exams') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="check-badge" href="#" wire:navigate>{{ __('global.sidebar.attendance') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="banknotes" href="#" wire:navigate>{{ __('global.sidebar.finance') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="presentation-chart-bar" href="#" wire:navigate>{{ __('global.sidebar.reports') }}</flux:sidebar.item>
+            <flux:sidebar.group expandable icon="users" heading="{{ __('global.sidebar.users') }}">
+                <flux:sidebar.item icon="user" :href="route('users.index', ['roleFilter' => 'student'])"
+                    :current="request('roleFilter') === 'student'" wire:navigate
+                    :badge="number_format($sidebarStats['students_count'])">
+                    {{ __('global.sidebar.students') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="user-group" :href="route('users.index', ['roleFilter' => 'teacher'])"
+                    :current="request('roleFilter') === 'teacher'" wire:navigate
+                    :badge="number_format($sidebarStats['teachers_count'])">
+                    {{ __('global.sidebar.teachers') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="academic-cap" :href="route('specializations.index')"
+                    :current="request()->routeIs('specializations.index')" wire:navigate
+                    :badge="number_format($sidebarStats['specializations_count'])">
+                    {{ __('global.sidebar.specializations') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="briefcase" :href="route('job-applications.index')"
+                    :current="request()->routeIs('job-applications.index')" wire:navigate
+                    :badge="number_format($sidebarStats['job_applications_count'])">
+                    {{ __('global.sidebar.job_applications') }}
+                </flux:sidebar.item>
+
+                <flux:separator variant="subtle" class="my-2" />
+
+                <flux:sidebar.item icon="academic-cap" :href="route('programs.management')"
+                    :current="request()->routeIs('programs.management')" wire:navigate
+                    :badge="number_format($sidebarStats['programs_count'])">
+                    {{ __('staff-dashboard/programs.title') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="banknotes" :href="route('bundles.management')"
+                    :current="request()->routeIs('bundles.management')" wire:navigate
+                    :badge="number_format($sidebarStats['bundles_count'])">
+                    {{ __('staff-dashboard/bundles.title') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="calendar" :href="route('schedule.management')"
+                    :current="request()->routeIs('schedule.management')" wire:navigate>
+                    {{ __('staff-dashboard/schedule.title') }}
+                </flux:sidebar.item>
+            </flux:sidebar.group>
+            <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.circles') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.schedule') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="document-text" href="#" wire:navigate>{{ __('global.sidebar.exams') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="check-badge" href="#" wire:navigate>{{ __('global.sidebar.attendance') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="banknotes" href="#" wire:navigate>{{ __('global.sidebar.finance') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="presentation-chart-bar" href="#" wire:navigate>{{ __('global.sidebar.reports') }}
+            </flux:sidebar.item>
             @endhasrole
 
             {{-- Teacher Sidebar --}}
             @hasrole('teacher')
-                <flux:sidebar.item icon="users" href="#" wire:navigate>{{ __('global.sidebar.my_students') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.my_circles') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.my_schedule') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="clipboard-document-list" href="#" wire:navigate>{{ __('global.sidebar.assignments') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="academic-cap" href="#" wire:navigate>{{ __('global.sidebar.grades') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="folder" href="#" wire:navigate>{{ __('global.sidebar.resources') }}</flux:sidebar.item>
-                @endhasrole
-                
-                {{-- Student Sidebar --}}
-                @hasrole('student')
-                <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.my_circles') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.my_schedule') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="clipboard-document-list" href="#" wire:navigate>{{ __('global.sidebar.assignments') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="academic-cap" href="#" wire:navigate>{{ __('global.sidebar.my_grades') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="chart-bar" href="#" wire:navigate>{{ __('global.sidebar.progress') }}</flux:sidebar.item>
-                <flux:sidebar.item icon="trophy" href="#" wire:navigate>{{ __('global.sidebar.certificates') }}</flux:sidebar.item>
-                @endhasrole
+            <flux:sidebar.item icon="users" href="#" wire:navigate>{{ __('global.sidebar.my_students') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.my_circles') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.my_schedule') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="clipboard-document-list" href="#" wire:navigate>
+                {{ __('global.sidebar.assignments') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="academic-cap" href="#" wire:navigate>{{ __('global.sidebar.grades') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="folder" href="#" wire:navigate>{{ __('global.sidebar.resources') }}
+            </flux:sidebar.item>
+            @endhasrole
 
-                <flux:sidebar.item icon="envelope" href="#" wire:navigate>{{ __('global.sidebar.messages') }}</flux:sidebar.item>
+            {{-- Student Sidebar --}}
+            @hasrole('student')
+            <flux:sidebar.item icon="circle-stack" href="#" wire:navigate>{{ __('global.sidebar.my_circles') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="calendar" href="#" wire:navigate>{{ __('global.sidebar.my_schedule') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="clipboard-document-list" href="#" wire:navigate>
+                {{ __('global.sidebar.assignments') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="academic-cap" href="#" wire:navigate>{{ __('global.sidebar.my_grades') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="chart-bar" href="#" wire:navigate>{{ __('global.sidebar.progress') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="trophy" href="#" wire:navigate>{{ __('global.sidebar.certificates') }}
+            </flux:sidebar.item>
+            @endhasrole
+
+            <flux:sidebar.item icon="envelope" href="#" wire:navigate>{{ __('global.sidebar.messages') }}
+            </flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />
@@ -132,7 +187,8 @@
         </flux:navbar>
     </flux:header>
 
-    <flux:main class="relative bg-zinc-50 dark:bg-zinc-950 flex h-full p-0!" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+    <flux:main class="relative bg-zinc-50 dark:bg-zinc-950 flex h-full p-0!"
+        dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
         {{ $slot }}
     </flux:main>
 

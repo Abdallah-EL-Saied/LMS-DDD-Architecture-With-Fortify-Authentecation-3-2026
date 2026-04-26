@@ -150,18 +150,18 @@
                 <flux:navbar.item class="custom-nav-item" href="/" :current="request()->is('/')" wire:navigate>
                     {{ __('global.header.home') }}
                 </flux:navbar.item>
-                <flux:navbar.item class="custom-nav-item" href="courses" :current="request()->is('courses')"
+                <flux:navbar.item class="custom-nav-item" href="/programs" :current="request()->is('programs')"
                     wire:navigate>
-                    {{ __('global.header.courses') }}
+                    {{ __('global.header.programs') }}
                 </flux:navbar.item>
-                <flux:navbar.item class="custom-nav-item" href="about" :current="request()->is('about')" wire:navigate>
+                <flux:navbar.item class="custom-nav-item" href="/about" :current="request()->is('about')" wire:navigate>
                     {{ __('global.header.about') }}
                 </flux:navbar.item>
-                <flux:navbar.item class="custom-nav-item" href="pricing" :current="request()->is('pricing')"
+                <flux:navbar.item class="custom-nav-item" href="/pricing" :current="request()->is('pricing')"
                     wire:navigate>
                     {{ __('global.header.pricing') }}
                 </flux:navbar.item>
-                <flux:navbar.item class="custom-nav-item" href="contact" :current="request()->is('contact')"
+                <flux:navbar.item class="custom-nav-item" href="/contact" :current="request()->is('contact')"
                     wire:navigate>
                     {{ __('global.header.contact') }}
                 </flux:navbar.item>
@@ -221,19 +221,19 @@
                     class="text-white/80 hover:text-secondary hover:bg-white/5 px-4 py-2.5 rounded-lg flex items-center gap-3 text-sm font-medium transition-colors {{ request()->is('/') ? 'text-secondary bg-white/10' : '' }}">
                     <i class="fa-solid fa-home w-4 text-center"></i> {{ __('global.header.home') }}
                 </a>
-                <a href="courses" @click="mobileMenuOpen=false"
-                    class="text-white/80 hover:text-secondary hover:bg-white/5 px-4 py-2.5 rounded-lg flex items-center gap-3 text-sm font-medium transition-colors {{ request()->is('courses') ? 'text-secondary bg-white/10' : '' }}">
-                    <i class="fa-solid fa-book-open w-4 text-center"></i> {{ __('global.header.courses') }}
+                <a href="/programs" @click="mobileMenuOpen=false"
+                    class="text-white/80 hover:text-secondary hover:bg-white/5 px-4 py-2.5 rounded-lg flex items-center gap-3 text-sm font-medium transition-colors {{ request()->is('programs') ? 'text-secondary bg-white/10' : '' }}">
+                    <i class="fa-solid fa-book-open w-4 text-center"></i> {{ __('global.header.programs') }}
                 </a>
-                <a href="about" @click="mobileMenuOpen=false"
+                <a href="/about" @click="mobileMenuOpen=false"
                     class="text-white/80 hover:text-secondary hover:bg-white/5 px-4 py-2.5 rounded-lg flex items-center gap-3 text-sm font-medium transition-colors {{ request()->is('about') ? 'text-secondary bg-white/10' : '' }}">
                     <i class="fa-solid fa-circle-info w-4 text-center"></i> {{ __('global.header.about') }}
                 </a>
-                <a href="pricing" @click="mobileMenuOpen=false"
+                <a href="/pricing" @click="mobileMenuOpen=false"
                     class="text-white/80 hover:text-secondary hover:bg-white/5 px-4 py-2.5 rounded-lg flex items-center gap-3 text-sm font-medium transition-colors {{ request()->is('pricing') ? 'text-secondary bg-white/10' : '' }}">
                     <i class="fa-solid fa-credit-card w-4 text-center"></i> {{ __('global.header.pricing') }}
                 </a>
-                <a href="contact" @click="mobileMenuOpen=false"
+                <a href="/contact" @click="mobileMenuOpen=false"
                     class="text-white/80 hover:text-secondary hover:bg-white/5 px-4 py-2.5 rounded-lg flex items-center gap-3 text-sm font-medium transition-colors {{ request()->is('contact') ? 'text-secondary bg-white/10' : '' }}">
                     <i class="fa-solid fa-envelope w-4 text-center"></i> {{ __('global.header.contact') }}
                 </a>

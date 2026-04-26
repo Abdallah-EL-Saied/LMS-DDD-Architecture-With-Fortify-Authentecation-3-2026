@@ -47,7 +47,18 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function configureViews(): void
     {
-        Fortify::loginView(fn() => view('pages::auth.login'));
+        Fortify::loginView(function () {
+            $intended = \Illuminate\Support\Facades\Session::get('url.intended');
+            
+            // Smart Form Exclusions: if intended URL was a "control/edit/create" page, send to parent index
+            if ($intended && str_contains($intended, '/control')) {
+                // Trim "/control" and anything after it from the intended url
+                $cleanedIntended = preg_replace('/\/control(\/.*)?$/', '', $intended);
+                \Illuminate\Support\Facades\Session::put('url.intended', $cleanedIntended);
+            }
+
+            return view('pages::auth.login');
+        });
         Fortify::verifyEmailView(fn() => view('pages::auth.verify-email'));
         Fortify::twoFactorChallengeView(fn() => view('pages::auth.two-factor-challenge'));
         Fortify::confirmPasswordView(fn() => view('pages::auth.confirm-password'));

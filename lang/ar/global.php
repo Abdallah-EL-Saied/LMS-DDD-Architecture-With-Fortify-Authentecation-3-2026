@@ -3,7 +3,7 @@
 return [
     'header' => [
         'home' => 'الرئيسية',
-        'courses' => 'المسارات التعليمية',
+        'programs' => 'البرامج الدراسية',
         'about' => 'عن المركز',
         'pricing' => 'الأسعار',
         'contact' => 'اتصل بنا',
@@ -56,7 +56,7 @@ return [
         'my_circles' => 'حلقاتي',
         'my_schedule' => 'جدولي',
         'my_grades' => 'درجاتي',
-        'courses' => 'المسارات التعليمية',
+        'programs' => 'البرامج الدراسية',
         'contact' => 'اتصل بنا',
         'favorites' => 'المفضلة',
         'settings' => 'الإعدادات',

@@ -19,6 +19,9 @@ interface BaseRepositoryInterface
     // Delete data from specific table
     public function delete(int $id);
 
+    // Count records
+    public function count(array $filters = []): int;
+
     // Filter with pagination and sorting
     public function filter(array $filters = [], array $relations = [], ?string $sort = null, int $perPage = 15);
 }

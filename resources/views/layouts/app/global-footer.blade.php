@@ -1,5 +1,4 @@
-<footer class="bg-primary-500 pt-16 pb-8"
-    dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<footer class="bg-primary-500 pt-16 pb-8" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
@@ -51,10 +50,10 @@
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
                             {{ __('global.header.about') }}</a></li>
-                    <li><a href="{{ route('courses') }}"
+                    <li><a href="{{ route('programs') }}"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>
-                            {{ __('global.header.courses') }}</a></li>
+                            {{ __('global.header.programs') }}</a></li>
                     <li><a href="{{ route('careers') }}"
                             class="text-white/70 hover:text-tertiary transition-colors text-sm flex items-center gap-2"><i
                                 class="fa-solid fa-chevron-{{ app()->getLocale() === 'ar' ? 'left' : 'right' }} text-xs"></i>

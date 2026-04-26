@@ -135,7 +135,7 @@ new #[Layout('layouts.welcome')] class extends Component {
                             {{ __('home.features.f5_desc') }}
                         </p>
                         <a href="/contact" class="text-primary font-bold text-sm hover:underline" wire:navigate>
-                            {{ __('courses.learn_more') }} &larr;
+                            {{ __('programs.learn_more') }} &larr;
                         </a>
                     </div>
                 </div>

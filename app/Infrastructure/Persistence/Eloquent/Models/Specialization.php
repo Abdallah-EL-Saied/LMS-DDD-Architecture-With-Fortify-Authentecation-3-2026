@@ -18,8 +18,6 @@ class Specialization extends Model
     protected $filterable = ['is_active'];
 
     protected $casts = [
-        'name' => 'array',
-        'description' => 'array',
         'is_active' => 'boolean',
     ];
 

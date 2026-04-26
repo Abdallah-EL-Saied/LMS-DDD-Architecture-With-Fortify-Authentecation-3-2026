@@ -3,7 +3,7 @@
 return [
     'header' => [
         'home' => 'Home',
-        'courses' => 'Our Courses',
+        'programs' => 'Our Programs',
         'about' => 'About Us',
         'pricing' => 'Pricing',
         'contact' => 'Contact Us',
@@ -56,7 +56,7 @@ return [
         'my_circles' => 'My Circles',
         'my_schedule' => 'My Schedule',
         'my_grades' => 'My Grades',
-        'courses' => 'Our Courses',
+        'programs' => 'Our Programs',
         'contact' => 'Contact Us',
         'favorites' => 'Favorites',
         'settings' => 'Settings',

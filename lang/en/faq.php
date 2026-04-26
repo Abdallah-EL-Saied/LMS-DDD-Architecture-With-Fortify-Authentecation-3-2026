@@ -4,7 +4,7 @@ return [
     'heading' => 'Frequently Asked Questions',
     'subheading' => 'Everything you need to know about our learning system and subscriptions.',
     'q1' => 'Do you offer a free trial class?',
-    'a1' => 'Yes, we offer a free trial session for all our courses to ensure it matches your expectations and level.',
+    'a1' => 'Yes, we offer a free trial session for all our programs to ensure it matches your expectations and level.',
     'q2' => 'Are the classes one-on-one or groups?',
     'a2' => 'We provide a 1-to-1 system for maximum focus on the student, and we also have small groups if you prefer learning with peers.',
     'q3' => 'Can I choose my own schedule?',

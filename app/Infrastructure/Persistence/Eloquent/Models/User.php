@@ -53,6 +53,14 @@ class User extends Authenticatable
     }
 
     /**
+     * The programs that belong to the user.
+     */
+    public function programs(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Program::class, 'program_user');
+    }
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>

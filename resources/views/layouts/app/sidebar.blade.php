@@ -23,6 +23,10 @@
                     :current="request()->routeIs('users.index')" wire:navigate>
                     {{ __('Users') }}
                 </flux:sidebar.item>
+                <flux:sidebar.item icon="academic-cap" :href="route('programs.management')"
+                    :current="request()->routeIs('programs.management*')" wire:navigate>
+                    {{ __('Programs') }}
+                </flux:sidebar.item>
             </flux:sidebar.group>
         </flux:sidebar.nav>
 

@@ -25,10 +25,10 @@
 
 ## Overview
 
-The academy provides **1-on-1 online sessions** (teacher + one student only) via any video platform. The teacher manually adds the meeting link — no Zoom API integration for now. No recorded courses or video content.
+The academy provides **1-on-1 online sessions** (teacher + one student only) via any video platform. The teacher manually adds the meeting link — no Zoom API integration for now. No recorded programs or video content.
 
 ### Business Model
-- Owner adds **courses and plans** with details and pricing
+- Owner adds **programs and plans** with details and pricing
 - **Dual pricing**: Egyptian Pound for Egyptian students + USD for international
 - Teachers apply via a **public job application form**
 - After acceptance, admin creates their account and sets contract terms
@@ -373,7 +373,7 @@ app/
 │   │   ├── Entities/Subject.php
 │   │   └── Repositories/ISubjectRepository.php
 │   ├── JobApplication/
-│   ├── Course/               # courses + subscription plans
+│   ├── Program/               # programs + subscription plans
 │   ├── Enrollment/           # subscription + schedule + change requests
 │   ├── Payment/              # Paymob + 2Checkout + invoices
 │   ├── Session/              # 1-on-1 sessions + link + substitute

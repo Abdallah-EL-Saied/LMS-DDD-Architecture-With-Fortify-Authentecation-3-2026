@@ -11,8 +11,13 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-new #[Layout('layouts.app')] #[Title('Specializations Management')] class extends Component {
+new #[Layout('layouts.app')] class extends Component {
     use WithPagination;
+
+    public function rendering($view)
+    {
+        $view->title(__('staff-dashboard/specializations.title'));
+    }
 
     #[Url]
     public string $search = '';
